@@ -3,18 +3,18 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const swaggerDefinition = {
-  openapi: '3.0.0', // версія OpenAPI
+  openapi: '3.0.0',
   info: {
-    title: 'My API', // Назва вашого API
-    version: '1.0.0', // Версія вашого API
+    title: 'My API', 
+    version: '1.0.0',
     description: 'Опис вашого API',
   },
 };
 
 const options = {
   swaggerDefinition,
-  // Файли з описами API в форматі JSDoc
-  apis: ['./routes/*.js'], // Вказуйте шляхи до вашого коду, де описи ендпоінтів
+ 
+  apis: ['./routes/*.js'], 
 };
 
 const swaggerSpec = swaggerJSDoc(options);
