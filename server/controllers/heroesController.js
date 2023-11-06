@@ -1,8 +1,13 @@
 const uuid = require("uuid");
 const path = require("path");
 const fs = require("fs");
+const { Op } = require("sequelize");
 
-const { Superheroes, Superhero_images } = require("../models/models");
+const {
+  Superheroes,
+  Superhero_images,
+  ListSuperpowers,
+} = require("../models/models");
 const ApiError = require("../error/ApiError");
 
 async function deleteImage(filename) {
@@ -20,22 +25,25 @@ async function deleteImage(filename) {
 class HeroController {
   async createHero(req, res, next) {
     try {
-      const {
+      let {
         nickname,
         realName,
         originDescription,
         superpowers,
         catchPhrase,
+        listSuperpowers,
       } = req.body;
       const images = req.files;
 
-      const Superhero = await Superheroes.create({
-        nickname: nickname,
+      const superheroData = {
+        nickname,
         real_name: realName,
         origin_description: originDescription,
-        superpowers: superpowers,
+        superpowers,
         catch_phrase: catchPhrase,
-      });
+      };
+
+      const Superhero = await Superheroes.create(superheroData);
       if (images) {
         const imageKeys = Object.keys(images);
 
@@ -45,17 +53,29 @@ class HeroController {
           imageSuperhero.mv(path.resolve(__dirname, "..", "static", fileName));
           Superhero_images.create({
             image: fileName,
+
             superheroId: Superhero.id,
           });
         });
       }
-      return res.json(Superhero);
+      if (listSuperpowers) {
+        listSuperpowers = JSON.parse(listSuperpowers);
+        listSuperpowers.forEach((i) => {
+          ListSuperpowers.create({
+            titleSuperpower: i.titleSuperpower,
+            value: i.value,
+            superheroId: Superhero.id,
+          });
+        });
+      }
+
+      return res.status(201).json(Superhero);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
 
-  async changeHero(req, res, next) {
+  async updateHero(req, res, next) {
     try {
       const {
         nickname,
@@ -63,24 +83,23 @@ class HeroController {
         originDescription,
         superpowers,
         catchPhrase,
+        listSuperpowers,
         imageToDeleteId,
         imageToDelete,
       } = req.body;
       const images = req.files;
-      const { id } = req.params;
+      const { id } = req.params;      
+      const updatedData = {
+        nickname: nickname,
+        real_name: realName,
+        origin_description: originDescription,
+        superpowers: superpowers,
+        catch_phrase: catchPhrase,
+      };
 
-      const [updatedRows] = await Superheroes.update(
-        {
-          nickname: nickname,
-          real_name: realName,
-          origin_description: originDescription,
-          superpowers: superpowers,
-          catch_phrase: catchPhrase,
-        },
-        {
-          where: { id: id },
-        }
-      );
+      await Superheroes.update(updatedData, {
+        where: { id: id },
+      });
 
       if (imageToDelete) {
         if (typeof imageToDeleteId == "string") {
@@ -95,7 +114,6 @@ class HeroController {
         } else {
           imageToDelete.forEach((image) => {
             deleteImage(image);
-
           });
           imageToDeleteId.forEach(async (imageId) => {
             try {
@@ -109,8 +127,29 @@ class HeroController {
         }
       }
 
-      if (images) { //Create added image
+      if (listSuperpowers) {
+        let parsedListSuperpowers = JSON.parse(listSuperpowers);
+
+        try {
+          await ListSuperpowers.destroy({
+            where: { superheroId: id },
+          });
+
+          parsedListSuperpowers.forEach((i) => {
+            ListSuperpowers.create({
+              titleSuperpower: i.titleSuperpower,
+              value: i.value,
+              superheroId: id,
+            });
+          });
+        } catch (error) {
+          console.error("Error deleting superpowers:", error);
+        }
+      }
+
+      if (images) {
         const imageKeys = Object.keys(images);
+
         imageKeys.forEach((key) => {
           const imageSuperhero = images[key];
           const fileName = uuid.v4() + ".jpg";
@@ -122,35 +161,72 @@ class HeroController {
         });
       }
 
-      return res.json({ message: "Супергероя оновлено" });
+      return res.status(200).json({ message: "Superhero updated" });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
-
-  async getAll(req, res) {
+  async getAllHeroes(req, res) {
     try {
-      let { limit, page } = req.query;
+      let { limit, page, dateCreation, searchText } = req.query;
       page = page || 1;
-      limit = limit || 6;
+      limit = limit || 5;
+      dateCreation = dateCreation || "new";
       const offset = (page - 1) * limit;
+      let orderByDate = "DESC";
+      let searchResults;
+      let totalCount;
 
-      const count = await Superheroes.count(); // number of heroes
+      if (dateCreation === "old") {
+        orderByDate = "ASC";
+      }
 
-      const listSuperheroes = await Superheroes.findAll({
-        include: [
-          {
-            model: Superhero_images,
-            as: "SuperheroImages",
+      if (searchText !== "undefined") {
+        searchResults = await Superheroes.findAll({
+          include: [
+            {
+              model: Superhero_images,
+              as: "SuperheroImages",
+            },
+          ],
+          where: {
+            [Op.or]: [
+              { nickname: { [Op.like]: `%${searchText}%` } },
+              { real_name: { [Op.like]: `%${searchText}%` } },
+            ],
           },
-        ],
-        limit: Number(limit),
-        offset: Number(offset),
-      });
+          order: [["createdAt", orderByDate]],
+          limit: Number(limit),
+          offset: Number(offset),
+        });
+
+        totalCount = await Superheroes.count({
+          where: {
+            [Op.or]: [
+              { nickname: { [Op.like]: `%${searchText}%` } },
+              { real_name: { [Op.like]: `%${searchText}%` } },
+            ],
+          },
+        });
+      } else {
+        totalCount = await Superheroes.count();
+        searchResults = await Superheroes.findAll({
+          include: [
+            {
+              model: Superhero_images,
+              as: "SuperheroImages",
+            },
+          ],
+          order: [["createdAt", orderByDate]],
+          limit: Number(limit),
+          offset: Number(offset),
+        });
+      }
+      // searchResults = sortHeroes(searchResults, dateCreation)
 
       return res.json({
-        total: count,
-        superheroes: listSuperheroes,
+        total: totalCount,
+        superheroes: searchResults,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -158,20 +234,25 @@ class HeroController {
     }
   }
 
-  async getOne(req, res) {
+  async getOneHero(req, res) {
     const { id } = req.params;
     const superhero = await Superheroes.findOne({
       where: { id },
-      include: [{ model: Superhero_images, as: "SuperheroImages" }],
+      include: [
+        { model: Superhero_images, as: "SuperheroImages" },
+        {
+          model: ListSuperpowers,
+          as: "listSuperpowers",
+        },
+      ],
     });
-    return res.json(superhero);
+    return res.status(200).json(superhero);
   }
 
-  async dellHero(req, res) {
+  async deleteHero(req, res) {
     try {
       const { id } = req.params;
 
-      // all photos associated with the hero for his ID
       const superhero = await Superheroes.findOne({
         where: { id },
         include: [{ model: Superhero_images, as: "SuperheroImages" }],
@@ -190,10 +271,13 @@ class HeroController {
         include: [{ model: Superhero_images, as: "SuperheroImages" }],
       });
 
-      return res.status(204).end(); // успішне видалення
+      await ListSuperpowers.destroy({
+        where: { superheroId: id },
+      });
+
+      return res.status(204).end();
     } catch (error) {
-      console.error("Error deleting hero:", error);
-      return res.status(500).json({ message: "Server error" });
+      next(ApiError.internal(error.message));
     }
   }
 }

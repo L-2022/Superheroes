@@ -1,0 +1,108 @@
+.hero_wrapper {
+  color: #fff;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr;
+  padding: 0 53px;
+}
+
+.hero_name {
+  text-align: center;
+  font-size: 70px;
+  color: #923b10;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.heroName {
+  text-align: center;
+  font-size: 18px;
+  color: #2238da;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.container_btn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.change_btn {
+  background-color: #4556d4;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete_btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.info_hero {
+  max-width: 100%;
+  margin: 8px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.short_label {
+  padding: 20px;
+  border: 2px solid #c6bebe;
+  border-radius: 4px;
+}
+.long_label {
+  text-align: justify;
+  padding: 15px;
+  border: 1px solid #c6bebe;
+  border-radius: 4px;
+}
+
+.list_superpowers {
+  padding: 15px;
+  border: 2px solid #c6bebe;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+
+.list_superpowers__superpower {
+  margin: 2px 5px;
+  border-radius: 4px;
+  background-color: rgb(63, 141, 82);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.gallery_img {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 5px;
+}
+
+.galery__item_img {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.gallery_img img {
+  border-radius: 5px;
+  width: 300px;
+  height: auto;
+  margin-bottom: 5px;
+}

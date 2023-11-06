@@ -1,12 +1,12 @@
-import { HEROES_ROUTE } from "../utils/consts";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { HEROES_ROUTE } from "../utils/consts";
+import styles from "../styles/HeroPage.module.css";
 import { fetchOneHero, deleteHero } from "../http/heroesAPI";
-import styles from "./HeroPage.module.css";
-import ChangeHero from "../components/Hero/ChangeHero";
+import UpdateHero from "../components/Hero/UpdateHero";
+import Reting from "../components/UI/Reting";
 
-const LogoPage = () => {
+const HeroPage = () => {
   const [heroes, setHeroes] = useState({ SuperheroImages: [] });
   const [changeHero, setChangeHero] = useState(false);
   const { id } = useParams();
@@ -18,72 +18,89 @@ const LogoPage = () => {
   }, [changeHero, id]);
 
   return (
-    <div className={styles.HeroContent}>
+    <div className={styles.hero_wrapper}>
       {changeHero === true ? (
         <>
           <button
-            className={`${styles.changeButton}`}
+            className={`${styles.change_btn}`}
             onClick={() => setChangeHero(false)}
           >
-            Cancel hero
+            Cancel
           </button>
-
-          <ChangeHero heroes={heroes} id={id} />
+          <UpdateHero heroes={heroes} id={id} />
         </>
       ) : (
         <>
-          <h2 className={styles.heroName}>{heroes.nickname}</h2>
-          <div className={styles.buttonContainer}>
+          <h2 className={styles.hero_name}>{heroes.nickname}</h2>
+          <div className={styles.container_btn}>
             <button
-              className={`${styles.changeButton} ${styles.button}`}
+              className={`${styles.change_btn} ${styles.button}`}
               onClick={() => setChangeHero(true)}
             >
-              Change hero
+              Change
             </button>
             <NavLink name="delete" style={{ color: "white" }} to={HEROES_ROUTE}>
               <button
-                className={`${styles.deleteButton} ${styles.button}`}
+                className={`${styles.delete_btn} ${styles.button}`}
                 name="delete"
                 onClick={() => {
                   const confirmation = window.confirm(
                     "Are you sure you want to delete this character?"
                   );
-
                   if (confirmation) {
                     setChangeHero(false);
                     deleteHero(id);
                   }
                 }}
               >
-                Delete hero
+                Delete
               </button>
             </NavLink>
           </div>
 
-          <div className={styles.infoHero}>
-            <h2>Real name: {heroes.real_name}</h2>
-            <h2>Superpowers: {heroes.superpowers}</h2>
-            <h2>Catch phrase: {heroes.catch_phrase}</h2>
-            <h1>Origin description:</h1>
-            <div className={styles.infoHero}>{heroes.origin_description}</div>
+          <div className={styles.info_hero}>
+            <h2 className={styles.short_label}>
+              Real name: {heroes.real_name}
+            </h2>
+            <h2 className={styles.short_label}>
+              Catch phrase: {heroes.catch_phrase}
+            </h2>
+            <h2 className={styles.long_label}>
+              Achievement: <p>{heroes.superpowers}</p>
+            </h2>
+            <h1 className={styles.long_label}>
+              Origin description:<p>{heroes.origin_description}</p>
+            </h1>
           </div>
-          <h1>Images</h1>
-          <div className={styles.uploadedImages}>
+
+          {/*  */}
+
+          <div className={styles.list_superpowers}>
+            <p>Superpowers:</p>
+            {!heroes.listSuperpowers ? (
+              <>Without Superpowers</>
+            ) : (
+              heroes.listSuperpowers.map((listSuperpower, index) => (
+                <div
+                  className={styles.list_superpowers__superpower}
+                  key={listSuperpower.id}
+                >
+                  <p>{listSuperpower.titleSuperpower}</p>
+                </div>
+              ))
+            )}
+          </div>
+          {/*  */}
+          <h1>Images:</h1>
+          <div className={styles.galery__item_img}>
             {!heroes.SuperheroImages ? (
               <>Without Retings</>
             ) : (
-              heroes.SuperheroImages.map((listRatings, index) => (
-                <div
-                  className={styles.imageGallery}
-                  key={listRatings.id}
-                  style={{
-                    background: "LightGray",
-                    padding: 10,
-                  }}
-                >
+              heroes.SuperheroImages.map((itemImg, index) => (
+                <div className={styles.gallery_img} key={itemImg.id}>
                   <img
                     className={styles.img}
-                    src={process.env.REACT_APP_API_URL + listRatings.image}
+                    src={process.env.REACT_APP_API_URL + itemImg.image}
                     alt=""
                   />
                   {heroes.image}
@@ -97,4 +114,4 @@ const LogoPage = () => {
   );
 };
 
-export default LogoPage;
+export default HeroPage;

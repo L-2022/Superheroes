@@ -1,10 +1,12 @@
-## npm run dev - start server
+## `npm run dev` - start server
 
-## npm start - start client
+## `npm start` - start client
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## create a database in PostgreSQL with the name: server/.env
 
 # Getting Started with Create React App
+
+# http://localhost:PORT/api-docs
 
 
 ## Available Scripts

@@ -6,6 +6,8 @@ export default class HeroesStore {
     this._page = 1;
     this._totalCount = 1;
     this._limit = 5;
+    this._searchText = "";
+    this._dateCreation = "new";
     makeAutoObservable(this);
   }
 
@@ -15,13 +17,17 @@ export default class HeroesStore {
   setLimits(limit) {
     this._limit = limit;
   }
-
+  setSearchText(searchText) {
+    this._searchText = searchText;
+  }
+  setDateCreation(dateCreation) {
+    this._dateCreation = dateCreation;
+  }
   setTotalCount(count) {
     this._totalCount = count;
   }
 
   setListSuperhero(listSuperhero) {
-    console.log("listSuperhero", listSuperhero);
     this._listSuperhero = listSuperhero;
   }
 
@@ -34,9 +40,13 @@ export default class HeroesStore {
   get limit() {
     return this._limit;
   }
-
+  get searchText() {
+    return this._searchText;
+  }
+  get dateCreation() {
+    return this._dateCreation;
+  }
   get listSuperhero() {
     return this._listSuperhero;
   }
-  
 }

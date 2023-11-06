@@ -9,9 +9,14 @@ module.exports = {
     dialect: 'postgres', 
   };
 
-  test('це опис тесту', () => {
-    // Тестовий код
-    expect(1 + 1).toBe(2);
-  });
+  module.exports = {
+    testEnvironment: 'node',
+    moduleFileExtensions: ['js', 'json'],
+    transform: {
+      '^.+\\.js$': 'babel-jest', // Додайте це правило для трансформації коду ES модулів
+    },
+    testMatch: ['**/*.test.js'],
+    verbose: true,
+  };
 
   

@@ -1,8 +1,4 @@
-import {
-  ADD_HERO_ROUTE,
-  HERO_ROUTE,
-  HEROES_ROUTE,
-} from "./utils/consts";
+import { ADD_HERO_ROUTE, HERO_ROUTE, HEROES_ROUTE } from "./utils/consts";
 
 import Heroes from "./pages/Heroes";
 import HeroPage from "./pages/HeroPage";
