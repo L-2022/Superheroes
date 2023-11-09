@@ -38,7 +38,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
     if (listSuperpowers.length < 5) {
       setListSuperpowers([
         ...listSuperpowers,
-        { titleSuperpower: "", number: Date.now() },
+        { titleSuperpower: "", id: Date.now() },
       ]);
     } else {
       alert("A maximum of 5 superpowers can be added");
@@ -59,10 +59,10 @@ const HeroForm = ({ initialValues, onSubmit }) => {
     }
   };
   
-  const changeSuperpower = (key, value, number) => {
+  const changeSuperpower = (key, value, id) => {
     setListSuperpowers(
       listSuperpowers.map((i) =>
-        i.number === number ? { ...i, [key]: value } : i
+        i.id === id ? { ...i, [key]: value } : i
       )
     );
   };
@@ -107,7 +107,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
       formData.append("superpowers", superpowers);
       formData.append("catchPhrase", catchPhrase);
       formData.append("listSuperpowers", JSON.stringify(listSuperpowers));
-//////////
+
       deleteSuperpower.forEach((_, index) => {
         formData.append("deleteSuperpower", deleteSuperpower[index]);
       });
@@ -115,8 +115,6 @@ const HeroForm = ({ initialValues, onSubmit }) => {
       deleteSuperpowerId.forEach((_, index) => {
         formData.append("deleteSuperpowerId", deleteSuperpowerId[index]);
       });
-
-      ////
 
       deleteImage.forEach((_, index) => {
         formData.append("imageToDelete", deleteImage[index]);
@@ -199,13 +197,13 @@ const HeroForm = ({ initialValues, onSubmit }) => {
 </label>
 <div className={styles.lists_superpoweres}>
   {listSuperpowers.map((i, index) => (
-    <div className={styles.item_superpower} key={i.number}>
+    <div className={styles.item_superpower} key={i.id}>
       <input
         className={styles.input_superpower}
         type="text"
         value={i.titleSuperpower}
         onChange={(e) =>
-          changeSuperpower("titleSuperpower", e.target.value, i.number)
+          changeSuperpower("titleSuperpower", e.target.value, i.id)
         }
         placeholder="Enter superpower name"
       />
@@ -219,42 +217,6 @@ const HeroForm = ({ initialValues, onSubmit }) => {
     </div>
   ))}
 </div>
-
-      {/* Add a new superpower -start-  */}
-      {/* <label className={styles.label_img}>
-        <button
-          className={styles.input_field}
-          variant={"outline-dark"}
-          onClick={addRatingsToList}
-        >
-          Add a new superpower
-        </button>
-      </label>
-      <div className={styles.lists_superpoweres}>
-        {listSuperpowers.map((i, index) => (
-          <div className={styles.item_superpower}>
-            <input
-              className={styles.input_superpower}
-              type="text"
-              value={i.titleSuperpower}
-              onChange={(e) =>
-                changeRatingsToList("titleSuperpower", e.target.value, i.number)
-              }
-              placeholder="Enter rating name"
-            />
-            <button
-              className={styles.remove_superpower}
-              onClick={() => removeSuperpowersToList(index)}
-              variant={"outline-danger"}
-            >
-              X
-            </button>
-          </div>
-        ))}
-      </div> */}
-
-      {/* Add a new superpower -end-  */}
-
       <label className={styles.label_img}>
         Add Image:
         <input
