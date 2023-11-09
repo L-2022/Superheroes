@@ -4,7 +4,6 @@ import { HEROES_ROUTE } from "../utils/consts";
 import styles from "../styles/HeroPage.module.css";
 import { fetchOneHero, deleteHero } from "../http/heroesAPI";
 import UpdateHero from "../components/Hero/UpdateHero";
-import Reting from "../components/UI/Reting";
 
 const HeroPage = () => {
   const [heroes, setHeroes] = useState({ SuperheroImages: [] });

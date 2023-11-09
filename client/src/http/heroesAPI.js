@@ -1,5 +1,5 @@
 import axios, { get, put, post} from "axios";
-const $host = `http://localhost:5000/`;
+const $host = `${process.env.REACT_APP_API_URL}`;
 
 export const fetchHeroes = async (page, limit, dateCreation, searchText) => {
   try {
