@@ -25,7 +25,6 @@ const HeroForm = ({ initialValues, onSubmit }) => {
   const [deleteImageId, setDeleteImageId] = useState([]);
 
   useEffect(() => {
-    // Оновити поля форми при зміні ініціальних значень
     setNickname(initialValues?.nickname || "");
     setRealName(initialValues?.real_name || "");
     setOriginDescription(initialValues?.origin_description || "");

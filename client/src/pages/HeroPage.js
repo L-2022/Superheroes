@@ -71,9 +71,6 @@ const HeroPage = () => {
               Origin description:<p>{heroes.origin_description}</p>
             </h1>
           </div>
-
-          {/*  */}
-
           <div className={styles.list_superpowers}>
             <p>Superpowers:</p>
             {!heroes.listSuperpowers ? (
@@ -89,7 +86,6 @@ const HeroPage = () => {
               ))
             )}
           </div>
-          {/*  */}
           <h1>Images:</h1>
           <div className={styles.galery__item_img}>
             {!heroes.SuperheroImages ? (
