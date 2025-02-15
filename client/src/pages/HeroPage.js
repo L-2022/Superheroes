@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { HEROES_ROUTE } from "../utils/consts";
 import styles from "../styles/HeroPage.module.css";
@@ -6,106 +6,96 @@ import { fetchOneHero, deleteHero } from "../http/heroesAPI";
 import UpdateHero from "../components/Hero/UpdateHero";
 
 const HeroPage = () => {
-  const [heroes, setHeroes] = useState({ SuperheroImages: [] });
+  const [heroes, setHeroes] = useState({ SuperheroImages: [], listSuperpowers: [] });
   const [changeHero, setChangeHero] = useState(false);
   const { id } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     fetchOneHero(id).then((data) => {
-      setHeroes(data);
+      setHeroes(data || { SuperheroImages: [], listSuperpowers: [] });
     });
   }, [changeHero, id]);
 
-  return (
-    <div className={styles.hero_wrapper}>
-      {changeHero === true ? (
-        <>
-          <button
-            className={`${styles.change_btn}`}
-            onClick={() => setChangeHero(false)}
-          >
-            Cancel
-          </button>
-          <UpdateHero heroes={heroes} id={id} />
-        </>
-      ) : (
-        <>
-          <h2 className={styles.hero_name}>{heroes.nickname}</h2>
-          <div className={styles.container_btn}>
-            <button
-              className={`${styles.change_btn} ${styles.button}`}
-              onClick={() => setChangeHero(true)}
-            >
-              Change
-            </button>
-            <NavLink name="delete" style={{ color: "white" }} to={HEROES_ROUTE}>
-              <button
-                className={`${styles.delete_btn} ${styles.button}`}
-                name="delete"
-                onClick={() => {
-                  const confirmation = window.confirm(
-                    "Are you sure you want to delete this character?"
-                  );
-                  if (confirmation) {
-                    setChangeHero(false);
-                    deleteHero(id);
-                  }
-                }}
-              >
-                Delete
-              </button>
-            </NavLink>
-          </div>
+  const handleDelete = async () => {
+    const confirmation = window.confirm("Are you sure you want to delete this character?");
+    if (confirmation) {
+      await deleteHero(id);
+      history.push(HEROES_ROUTE);
+    }
+  };
 
-          <div className={styles.info_hero}>
-            <h2 className={styles.short_label}>
-              Real name: {heroes.real_name}
-            </h2>
-            <h2 className={styles.short_label}>
-              Catch phrase: {heroes.catch_phrase}
-            </h2>
-            <h2 className={styles.long_label}>
-              Achievement: <p>{heroes.superpowers}</p>
-            </h2>
-            <h1 className={styles.long_label}>
-              Origin description:<p>{heroes.origin_description}</p>
-            </h1>
-          </div>
-          <div className={styles.list_superpowers}>
-            <p>Superpowers:</p>
-            {!heroes.listSuperpowers ? (
-              <>Without Superpowers</>
+  return (
+          <div className={styles.hero_wrapper}>
+            {changeHero ? (
+                    <>
+                      <div className={styles.container_btn}>
+                        <button className={`${styles.btn} ${styles.change}`} onClick={() => setChangeHero(false)}>
+                          Cancel
+                        </button>
+                      </div>
+                      <UpdateHero heroes={heroes} id={id} />
+                    </>
             ) : (
-              heroes.listSuperpowers.map((listSuperpower, index) => (
-                <div
-                  className={styles.list_superpowers__superpower}
-                  key={listSuperpower.id}
-                >
-                  <p>{listSuperpower.titleSuperpower}</p>
-                </div>
-              ))
+                    <>
+                      <div className={styles.container_btn}>
+                        <button className={`${styles.btn} ${styles.change}`} onClick={() => setChangeHero(true)}>
+                          Change
+                        </button>
+                        <button className={`${styles.btn} ${styles.delete}`} onClick={handleDelete}>
+                          Delete
+                        </button>
+                      </div>
+                      <h2 className={styles.hero_name}>{heroes.nickname}</h2>
+                      <div className={styles.wrapper__info_hero}>
+                        {heroes.SuperheroImages.length > 0 ? (
+                                <img className={styles.main_hero_img} src={process.env.REACT_APP_API_URL + heroes.SuperheroImages[0].image} alt="Hero" />
+                        ) : (
+                                <>Without Images</>
+                        )}
+
+                        <div className={styles.info_hero}>
+                          <h2 className={`${styles.label} ${styles.short}`}>Real name: <p>{heroes.real_name}</p></h2>
+                          <h2 className={`${styles.label} ${styles.short}`}>Catch phrase: <p>{heroes.catch_phrase}</p></h2>
+                          <h2 className={`${styles.label} ${styles.long}`}>
+                            Achievement: <p>{heroes.superpowers}</p>
+                          </h2>
+
+                        </div>
+                      </div>
+                      <div className={styles.info_hero}>
+                      <h1 className={`${styles.label} ${styles.long}`}>
+                        Origin description:<p>{heroes.origin_description}</p>
+                      </h1>
+
+                      <p>Superpowers:</p>
+                      <div className={styles.list_superpowers}>
+                        {heroes.listSuperpowers.length > 0 ? (
+                                heroes.listSuperpowers.map((listSuperpower) => (
+                                        <div className={styles.superpower_item} key={listSuperpower.id}>
+                                          <p>{listSuperpower.titleSuperpower}</p>
+                                        </div>
+                                ))
+                        ) : (
+                                <>Without Superpowers</>
+                        )}
+                      </div>
+                    </div>
+                      <h1>Images:</h1>
+                      <div className={styles.gallery}>
+                        {heroes.SuperheroImages.length > 0 ? (
+                                heroes.SuperheroImages.map((itemImg) => (
+                                        <div key={itemImg.id}>
+                                          <img className={styles.img} src={process.env.REACT_APP_API_URL + itemImg.image} alt="Hero" />
+                                        </div>
+                                ))
+                        ) : (
+                                <>Without Images</>
+                        )}
+                      </div>
+                    </>
             )}
           </div>
-          <h1>Images:</h1>
-          <div className={styles.galery__item_img}>
-            {!heroes.SuperheroImages ? (
-              <>Without Retings</>
-            ) : (
-              heroes.SuperheroImages.map((itemImg, index) => (
-                <div className={styles.gallery_img} key={itemImg.id}>
-                  <img
-                    className={styles.img}
-                    src={process.env.REACT_APP_API_URL + itemImg.image}
-                    alt=""
-                  />
-                  {heroes.image}
-                </div>
-              ))
-            )}
-          </div>
-        </>
-      )}
-    </div>
   );
 };
 

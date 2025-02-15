@@ -1,45 +1,54 @@
-import axios, { get, put, post} from "axios";
-const $host = `${process.env.REACT_APP_API_URL}`;
+import { $host } from "./index";
 
 export const fetchHeroes = async (page, limit, dateCreation, searchText) => {
   try {
-    const url = `api/heroes/?page=${page}&limit=${limit}&dateCreation=${dateCreation}&searchText=${searchText}`;
-
-    const { data } = await get($host + url);
+    const url = `/api/heroes/?page=${page}&limit=${limit}&dateCreation=${dateCreation}&searchText=${searchText}`;
+    const { data } = await $host.get(url);
+    console.log("Fetched heroes:", data); // Додано для налагодження
     return data;
   } catch (e) {
-    console.log(e);
+    console.error("Error fetching heroes:", e);
+    return { superheroes: [] }; // Запобігання помилці при відсутності даних
   }
 };
 
 export const createHero = async (hero) => {
-  const { data } = await post($host + "api/heroes/", hero);
-  return data;
+  try {
+    const { data } = await $host.post("/api/heroes/", hero);
+    return data;
+  } catch (error) {
+    console.error("Error creating hero:", error);
+    throw error;
+  }
 };
 
 export const changeHero = async (changedHero, id) => {
   try {
-  const { data } = await put($host + "api/heroes/" + id, changedHero);
-  return data;}catch  (error) {
-    console.error("error when creating the hero:", error);
+    const { data } = await $host.put(`/api/heroes/${id}`, changedHero);
+    return data;
+  } catch (error) {
+    console.error("Error updating hero:", error);
+    throw error;
   }
 };
 
 export const fetchOneHero = async (id) => {
   try {
-    const { data } = await get($host + "api/heroes/" + id);
+    const { data } = await $host.get(`/api/heroes/${id}`);
+    console.log("Fetched one hero:", data); // Додано для налагодження
     return data;
   } catch (error) {
-    console.error("error when rendering the hero:", error);
+    console.error("Error fetching one hero:", error);
+    return null; // Запобігання помилці при відсутності даних
   }
 };
 
 export const deleteHero = async (id) => {
   try {
-    const { data } = await axios.delete($host + "api/heroes/" + id);
+    const { data } = await $host.delete(`/api/heroes/${id}`);
     return data;
   } catch (error) {
-    console.error("error when deleting the hero:", error);
+    console.error("Error deleting hero:", error);
     throw error;
   }
 };

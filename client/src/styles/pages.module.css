@@ -1,12 +1,10 @@
-
-  
   .pagination {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  
+
   .page {
     border: 1px solid #ccc;
     padding: 5px 10px;
@@ -15,16 +13,16 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .page:hover {
-    background-color: rgb(0, 98, 173)f;
+    background-color: var(--btn-hover-bg);
   }
-  
+
   .active {
     padding: 5px 10px;
     border-radius: 10px;
-    background-color: #007bff;
-    color: #ffffff;
+    background-color: var(--btn-hover-bg-active);
+    color: var(--btn-hover-text-active);
   }
 
 .pagination {

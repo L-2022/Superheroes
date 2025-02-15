@@ -1,108 +1,163 @@
 .hero_wrapper {
-  color: #fff;
+  color: var(--text-primary);
   display: grid;
-  width: 100%;
-  height: 100%;
   grid-template-columns: 1fr;
-  padding: 0 53px;
+  padding: 0 var(--spacing-large);
 }
 
 .hero_name {
   text-align: center;
-  font-size: 70px;
-  color: #923b10;
+  font-size: var(--font-size-heading);
+  color: var(--color-red-dark);
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px var(--shadow-primary);
+  font-family: var(--font-primary);
 }
-.heroName {
+
+.wrapper__info_hero {
+  display: flex;
+  margin: 20px 5px;
+
+}
+
+.main_hero_img {
+  width: 60%;
+  border-radius: 5px;
+  height: auto;
+}
+
+.hero_name_small {
   text-align: center;
-  font-size: 18px;
-  color: #2238da;
+  color: var(--color-blue-dark);
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80%;
+  font-family: var(--font-secondary);
 }
 
 .container_btn {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
+  gap: var(--spacing-base);
+  margin: var(--spacing-small);
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;}
 
-.change_btn {
-  background-color: #4556d4;
-  color: white;
+.btn {
+  color: var(--btn-text);
   border: none;
-  padding: 5px 10px;
+  padding: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
+  background-color: var(--color-blue-dark);
+  min-width: 100px;
+  width: 40%;
 }
 
-.delete_btn {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+.btn .change {
+  height: 40px;
+}
+
+.btn.delete {
+  background-color: var(--color-red);
 }
 
 .info_hero {
   max-width: 100%;
-  margin: 8px;
-  padding: 5px;
+  margin: var(--spacing-small);
   border-radius: 10px;
+  display: grid;
+  gap: 10px;
 }
 
-.short_label {
-  padding: 20px;
-  border: 2px solid #c6bebe;
+.label {
   border-radius: 4px;
 }
-.long_label {
+
+.label.short {
+  padding: var(--spacing-base);
+}
+
+.label.long {
   text-align: justify;
-  padding: 15px;
-  border: 1px solid #c6bebe;
-  border-radius: 4px;
 }
+
 
 .list_superpowers {
-  padding: 15px;
-  border: 2px solid #c6bebe;
+  padding: var(--spacing-large);
   border-radius: 4px;
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-template-rows: auto;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--spacing-base);
 }
 
-.list_superpowers__superpower {
+.superpower_item {
   margin: 2px 5px;
   border-radius: 4px;
-  background-color: rgb(63, 141, 82);
+  background-color: var(--color-green-dark);
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  padding: var(--spacing-small);
 }
 
-.gallery_img {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-small);
 }
 
-.galery__item_img {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.gallery_img img {
+.gallery img {
   border-radius: 5px;
-  width: 300px;
+  width: 100%;
   height: auto;
-  margin-bottom: 5px;
+}
+
+
+
+/* Адаптивність */
+@media (max-width: 1024px) {
+  .hero_name {
+    font-size: 40px;
+  }
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero_wrapper {
+    padding: 0 20px;
+  }
+  .hero_name {
+    font-size: 35px;
+  }
+  .list_superpowers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero_name {
+    font-size: 28px;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  .container_btn {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero_name {
+    font-size: 24px;
+  }
+  .list_superpowers {
+    grid-template-columns: 1fr;
+  }
 }

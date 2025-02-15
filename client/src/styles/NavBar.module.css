@@ -1,65 +1,69 @@
 .header {
-  padding: 0 53px;
-  display: grid;
-  grid-template-columns: 55px 1fr auto;
+  padding: 0 3%;
+  display: flex;
   align-items: center;
-  font-size: 34px;
-  text-align: center;
-  background-color: #000;
-  height: 80px;
+  font-size: var(--font-size-heading);
+  background-color: var(--bg-primary);
+  justify-content: space-between;
 }
 
 .header__logo {
-  width: 46px;
-  height: 46px;
+  width: 80px;
+}
+
+.header__logo > * {
+  width: 100%;
+  height: auto;
+  color: var(--bg-logo);
+}
+
+.header__logo:hover > * {
+  width: 100%;
+  height: auto;
+  color: var(--border-color-focus);
+
 }
 
 .header__links {
-  width: 100%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  gap: var(--spacing-large);
 }
 
-.header__links > *:nth-child(1) {
-  margin-right: 50px;
-  
-}
-
-.header__link {
-  font-size: 16px;
+.header__link, .header__link_active {
+  text-align: justify;
+  white-space: normal;
+  word-break: break-word;
+  font-size: var(--font-size-large);
+  font-family: var(--font-secondary);
   font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 0;
   padding: 10px 10px;
-  color: #df1111;
   border-radius: 7px;
-  border: 2px solid #df1111;
-  text-decoration: none;
+  color: var(--bg-logo);
+  border: 2px solid var(--bg-logo);
+  transition: color 0.3s, border-color 0.3s;
+  text-decoration: none !important;
 }
 
-.header__link:hover {
-  border: 2px solid #11df11;
-  text-decoration: none;
-  color: #11df11;
-}
-
-
+.header__link:hover,
 .header__link_active {
-  border: 2px solid #11df11;
-  border-radius: 7px;
-  color: #11df11;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 0;
-  padding: 10px 10px;
+  text-decoration: none !important;
+  color: var(--color-green);
+  border: 2px solid var(--color-black-light);
 }
 
-.header__link_active:hover {
-  border: 2px solid #df1111;
-  text-decoration: none;
-  color: #df1111;
+@media (max-width: 320px) {
+  .header {
+    padding: 0 5px;
+  }
+
+  .header__links {
+    gap: 5px;
+  }
+
+  .header__link, .header__link_active {
+    font-size: var(--font-size-small);
+  }
+
+
 }
-
-

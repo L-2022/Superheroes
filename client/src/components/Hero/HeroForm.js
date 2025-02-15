@@ -5,16 +5,16 @@ const HeroForm = ({ initialValues, onSubmit }) => {
   const [nickname, setNickname] = useState(initialValues?.nickname || "");
   const [realName, setRealName] = useState(initialValues?.real_name || "");
   const [originDescription, setOriginDescription] = useState(
-    initialValues?.origin_description || ""
+          initialValues?.origin_description || ""
   );
   const [superpowers, setSuperpowers] = useState(
-    initialValues?.superpowers || ""
+          initialValues?.superpowers || ""
   );
   const [catchPhrase, setCatchPhrase] = useState(
-    initialValues?.catch_phrase || ""
+          initialValues?.catch_phrase || ""
   );
   const [listSuperpowers, setListSuperpowers] = useState(
-    initialValues?.listSuperpowers || []
+          initialValues?.listSuperpowers || []
   );
   const [deleteSuperpower, setDeleteSuperpower] = useState([]);
   const [deleteSuperpowerId, setDeleteSuperpowerId] = useState([]);
@@ -43,12 +43,12 @@ const HeroForm = ({ initialValues, onSubmit }) => {
       alert("A maximum of 5 superpowers can be added");
     }
   };
-  
+
   const removeSuperpower = (index) => {
     const newSuperpowers = [...listSuperpowers];
     newSuperpowers.splice(index, 1);
     setListSuperpowers(newSuperpowers);
-  
+
     if (listSuperpowers[index].id) {
       setDeleteSuperpower([
         ...deleteSuperpower,
@@ -57,15 +57,15 @@ const HeroForm = ({ initialValues, onSubmit }) => {
       setDeleteSuperpowerId([...deleteSuperpowerId, listSuperpowers[index].id]);
     }
   };
-  
+
   const changeSuperpower = (key, value, id) => {
     setListSuperpowers(
-      listSuperpowers.map((i) =>
-        i.id === id ? { ...i, [key]: value } : i
-      )
+            listSuperpowers.map((i) =>
+                    i.id === id ? { ...i, [key]: value } : i
+            )
     );
   };
-  
+
   const addImage = (image) => {
     if (images.length < 5) {
       setImages([...images, image]);
@@ -96,8 +96,8 @@ const HeroForm = ({ initialValues, onSubmit }) => {
     e.preventDefault();
 
     if (
-      e.nativeEvent.submitter &&
-      e.nativeEvent.submitter.className === styles.submit_btn
+            e.nativeEvent.submitter &&
+            e.nativeEvent.submitter.className === styles.submit_btn
     ) {
       const formData = new FormData();
       formData.append("nickname", nickname);
@@ -134,124 +134,126 @@ const HeroForm = ({ initialValues, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.create_hero}>
-      <div className={styles.create_hero__label_forms}>
-        <label className={styles.label_form_item}>
-          Nickname:
-          <input
-            className={styles.input_field}
-            type="text"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </label>
+          <form onSubmit={handleSubmit} className={styles.create_hero}>
+            <div className={styles.create_hero__label_forms}>
+              <label className={styles.label_form_item}>
+                Nickname:
+                <input
+                        className={styles.input_field}
+                        type="text"
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
+                />
+              </label>
 
-        <label className={styles.label_form_item}>
-          Real name:
-          <input
-            className={styles.input_field}
-            type="text"
-            value={realName}
-            onChange={(e) => setRealName(e.target.value)}
-          />
-        </label>
-        <label className={styles.label_form_item}>
-          Catch phrase:
-          <input
-            className={styles.input_field}
-            type="text"
-            value={catchPhrase}
-            onChange={(e) => setCatchPhrase(e.target.value)}
-          />
-        </label>
-      </div>
+              <label className={styles.label_form_item}>
+                Real name:
+                <input
+                        className={styles.input_field}
+                        type="text"
+                        value={realName}
+                        onChange={(e) => setRealName(e.target.value)}
+                />
+              </label>
+              <label className={styles.label_form_item}>
+                Catch phrase:
+                <input
+                        className={styles.input_field}
+                        type="text"
+                        value={catchPhrase}
+                        onChange={(e) => setCatchPhrase(e.target.value)}
+                />
+              </label>
+            </div>
 
-      <label className={styles.label_form_description}>
-        Origin description:
-        <textarea
-          className={styles.label_form_textarea}
-          type="text"
-          value={originDescription}
-          onChange={(e) => setOriginDescription(e.target.value)}
-        />
-      </label>
-      <label className={styles.label_form_description}>
-        Achievement:
-        <textarea
-          className={styles.label_form_textarea}
-          type="text"
-          value={superpowers}
-          onChange={(e) => setSuperpowers(e.target.value)}
-        />
-      </label>
+            <label className={styles.label_form_description}>
+              Origin description:
+              <textarea
+                      className={styles.label_form_textarea}
+                      type="text"
+                      value={originDescription}
+                      onChange={(e) => setOriginDescription(e.target.value)}
+              />
+            </label>
+            <label className={styles.label_form_description}>
+              Achievement:
+              <textarea
+                      className={styles.label_form_textarea}
+                      type="text"
+                      value={superpowers}
+                      onChange={(e) => setSuperpowers(e.target.value)}
+              />
+            </label>
 
-      <label className={styles.label_img}>
-  <button
-    className={styles.input_field}
-    variant={"outline-dark"}
-    onClick={addSuperpower}
-  >
-    Add a new superpower
-  </button>
-</label>
-<div className={styles.lists_superpoweres}>
-  {listSuperpowers.map((i, index) => (
-    <div className={styles.item_superpower} key={i.id}>
-      <input
-        className={styles.input_superpower}
-        type="text"
-        value={i.titleSuperpower}
-        onChange={(e) =>
-          changeSuperpower("titleSuperpower", e.target.value, i.id)
-        }
-        placeholder="Enter superpower name"
-      />
-      <button
-        className={styles.remove_superpower}
-        onClick={() => removeSuperpower(index)}
-        variant={"outline-danger"}
-      >
-        X
-      </button>
-    </div>
-  ))}
-</div>
-      <label className={styles.label_img}>
-        Add Image:
-        <input
-          className={styles.input_field}
-          type="file"
-          onChange={handleFileChange}
-        />
-      </label>
+            <label className={styles.wrapper_addSuperpower}>
+              <button
+                      className={styles.add_img__btn}
+                      variant={"outline-dark"}
+                      onClick={addSuperpower}
+              >
+                Add a new superpower
+              </button>
+            </label>
+            <div className={styles.lists_superpoweres}>
+              {listSuperpowers.map((i, index) => (
+                      <div className={styles.item_superpower} key={i.id}>
+                        <input
+                                className={styles.input_superpower}
+                                type="text"
+                                value={i.titleSuperpower}
+                                onChange={(e) =>
+                                        changeSuperpower("titleSuperpower", e.target.value, i.id)
+                                }
+                                placeholder="Enter superpower name"
+                        />
+                        <button
+                                className={styles.remove_superpower}
+                                onClick={() => removeSuperpower(index)}
+                                variant={"outline-danger"}
+                        >
+                          -
+                        </button>
+                      </div>
+              ))}
+            </div>
+            <label className={styles.upload_button}>
+              Upload Photo
+              <input
+                      type="file"
+                      className={styles.hidden_input}
+                      onChange={handleFileChange}
+              />
+            </label>
 
-      <div className={styles.create_hero__galery}>
-        {images.map((image, index) => (
-          <div className={styles.galery__item_img} key={index}>
-            <img
-              className={styles.galery__downloaded_img}
-              src={
-                image instanceof File
-                  ? URL.createObjectURL(image)
-                  : process.env.REACT_APP_API_URL + image.image
-              }
-              alt={"Heroe image:" + index + 1}
-            />
-            <button
-              className={styles.galery__remove_button}
-              onClick={() => removeImage(index)}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-      </div>
-      <div className={styles.create_hero__btn}>
-        <button className={styles.submit_btn} type="submit">
-          Create
-        </button>
-      </div>
-    </form>
+
+            <div className={styles.create_hero__galery}>
+              {images.map((image, index) => (
+                      <div className={styles.galery__item_img} key={index}>
+                        <img
+                                className={styles.galery__downloaded_img}
+                                src={
+                                  image instanceof File
+                                          ? URL.createObjectURL(image)
+                                          : process.env.REACT_APP_API_URL + image.image
+                                }
+                                alt={"Heroe image:" + index + 1}
+                        />
+                        <button
+                                className={styles.galery__remove_button}
+                                onClick={() => removeImage(index)}
+                        >
+                          X
+                        </button>
+                      </div>
+              ))}
+            </div>
+            <div className={styles.create_hero__btn}>
+              <button className={styles.submit_btn} type="submit">
+                {!initialValues ? "Create": "Change"}
+
+              </button>
+            </div>
+          </form>
   );
 };
 

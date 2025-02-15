@@ -1,74 +1,81 @@
-.wrapper__filter_search {
-  color: #FFF;
-  display: grid;
+.filter_search_wrapper {
+  display: flex;
   align-items: center;
-  grid-template-columns: 1fr auto;
-  padding: 0 53px;
-  background-color: #4a3735;
-
+  justify-content: center;
+  margin: 10px 5%;
 }
 
 .filter {
-  height: 70px;
+  width: 100%;
   display: grid;
-  grid-template-columns: 144px 144px auto;
+  gap: 20px;
   align-items: center;
-  grid-column-gap: 30px;
+  justify-content: center;
 }
 
 .filter__select {
-  width: 114px;
-  color: #fff;
-  display: flex;
+  width: 100%;
   height: 40px;
-  font-size: 12px;
-  justify-content: center;
-  align-items: center;
-  background-color: #333;
+  color: var(--text-primary);
+  /*background-color: var(--border-color);*/
+  background-color: transparent;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding-left: 12px;
+  padding: 0 10px;
   cursor: pointer;
+  font-size: var(--font-size-base);
+  max-width: 100%;
 }
 
-.select {
-  font-size: 14px;
-  background-color: #fff;
-  color: #000;
-  margin-bottom: 5px;
-  border-radius: 6px;
+.filter__option {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
 }
 
-/* search bloc start*/
 .search {
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: end;
-}
-
-.search__img {
-  position: relative;
-  z-index: 2;
-  margin: 5px 5px;
-  border-radius: 5px;
-
-}
-
-.search__input {
-  font-size: 16px;
-  display: grid;
-  justify-content: end;
-  grid-template-columns: 0 auto;
-  height: 34px;
-}
-
-.search__input_text {
-  background-color: #ffffff;
-  text-indent: 46px;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
   border-radius: 6px;
-  border: none;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
 }
 
-.search__input input::placeholder {
-  color: #a9a9a9;
-  text-indent: 46px;
+.search__icon {
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+input {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: none;
+  outline: none;
+  font-size: var(--font-size-base);
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .filter {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search {
+    min-width: 100%;
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .filter {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .search {
+    grid-column: span 1;
+  }
 }

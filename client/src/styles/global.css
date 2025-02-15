@@ -1,0 +1,249 @@
+@import './layout.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Опціонально: якщо хочеш залишити фокус для навігації з клавіатури */
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+*::selection {
+  background-color: transparent;
+}
+
+*::-moz-selection {
+  background: transparent;
+}
+
+* {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*
+  Prevents the user from selecting text or elements.
+  Commonly used on interactive elements like buttons to improve user experience.
+
+  -webkit-tap-highlight-color: transparent;
+  Disables the default tap highlight effect (gray or blue overlay)
+  that appears on mobile devices when touching an element.
+  This is useful for custom-styled interactive elements to avoid visual interruptions.
+  */
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 65%;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
+
+  scrollbar-color: #149676 transparent;
+  scrollbar-width: thin;
+}
+
+/* Для WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Ширина скролбара */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #149676;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10765a;
+}
+
+
+
+body {
+  font-size: 20px;
+  background-color: var(--bg-primary);
+}
+
+
+
+:root {
+  /* Font families */
+  --font-primary: 'Roboto', sans-serif;
+  --font-secondary: 'Lora', serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* Font sizes */
+  --font-size-small: 1.2rem;
+  --font-size-base: 2.3rem;
+  --font-size-large: 2.4rem;
+  --font-size-xlarge: 3.2rem;
+  --font-size-heading: 4rem;
+
+  /* Spacing */
+  --spacing-small: 18px;
+  --spacing-base: 16px;
+  --spacing-large: 32px;
+}
+
+:root {
+  /* === Base Colors === */
+  --color-black: #000000; /* Чорний */
+  --color-black-light: #333333; /* Світліший чорний */
+  --color-black-dark: #000000; /* Темніший чорний (не змінюється) */
+
+  --color-white: #ffffff; /* Білий */
+  --color-white-dark: #e0e0e0; /* Темніший білий */
+
+  --color-gray-light: #b79494; /* Світло-сірий */
+  --color-gray-lighter: #f0f0f0; /* Ще світліший сірий */
+  --color-gray-darker: #b0b0b0; /* Темніший світло-сірий */
+  --color-gray-dark: #292929; /* Темно-сірий */
+  --color-gray-darkest: #1a1a1a; /* Ще темніший сірий */
+
+  --color-red: #ff0000; /* Червоний */
+  --color-red-light: #ff6666; /* Світло-червоний */
+  --color-red-dark: #cc0000; /* Темно-червоний */
+  --color-red-darker: #990000; /* Ще темніший червоний */
+
+  --color-green: #10a810; /* Зелений */
+  --color-green-light: #66ff66; /* Світло-зелений */
+  --color-green-lighter: #99ff99; /* Ще світліший зелений */
+  --color-green-dark: #00cc00; /* Темно-зелений */
+  --color-green-darker: #009900; /* Ще темніший зелений */
+
+  --color-blue: #0000ff; /* Синій */
+  --color-blue-light: #6666ff; /* Світло-синій */
+  --color-blue-lighter: #9999ff; /* Ще світліший синій */
+  --color-blue-dark: #0000cc; /* Темно-синій */
+  --color-blue-darker: #000099; /* Ще темніший синій */
+
+}
+
+/* Загальні змінні для темної теми */
+:root {
+  /**/
+  /* Основний фон сторінки */
+  --bg-primary: var(--color-black);
+  --bg-filter: var(--border-color-focus);
+  --bg-logo: var(--color-green-dark);
+
+  /* Основний колір тексту */
+  --text-primary: var(--color-white);
+
+  /* Колір рамки для елементів */
+  --border-color: var(--color-green-dark);
+  --border-color-hover: var(--color-green-light); /* Колір рамки при наведенні */
+  --border-color-focus: var(--color-green-darker); /* Колір рамки при фокусі */
+
+  /* Інверсія тіні для темної теми */
+  --shadow-primary: rgba(255, 255, 255, 0.2); /* Основна тінь */
+  --shadow-hover: rgba(255, 255, 255, 0.3); /* Тінь при наведенні */
+  --shadow-focus: rgba(255, 255, 255, 0.4); /* Тінь при фокусі */
+
+  /* Стилі для кнопки */
+  --btn-bg: var(--color-black); /* Фон кнопки */
+  --btn-text: var(--color-white); /* Колір тексту кнопки */
+
+  /* Стилі для кнопки при наведенні */
+  --btn-hover-bg: var(--color-green); /* Фон при наведенні */
+  --btn-hover-text: var(--color-black); /* Колір тексту при наведенні */
+
+  /* Стилі для кнопки при активному стані */
+  --btn-hover-bg-active: var(--color-red-darker); /* Фон при активному стані */
+  --btn-hover-text-active: var(--color-black); /* Колір тексту при активному стані */
+
+  /* Стилі для інпутів */
+  --input-bg: var(--color-gray-dark); /* Фон інпуту */
+  --input-text: var(--color-white); /* Колір тексту інпуту */
+  --input-border: var(--color-green); /* Колір рамки інпуту */
+  --input-border-hover: var(--color-green-light); /* Колір рамки при наведенні */
+  --input-border-focus: var(--color-green-darker); /* Колір рамки при фокусі */
+  --input-shadow: rgba(0, 255, 0, 0.2); /* Тінь інпуту */
+  --input-shadow-focus: rgba(0, 255, 0, 0.4); /* Тінь при фокусі */
+}
+
+/* Тема "світла" */
+[data-theme="light"] {
+  /* Основний фон сторінки */
+  --bg-primary: var(--color-gray-light);
+  --bg-logo: var(--color-black);
+
+  /* Основний колір тексту */
+  --text-primary: var(--color-black);
+
+  /* Колір рамки для елементів */
+  --border-color: var(--color-red-dark);
+  --border-color-hover: var(--color-red-light); /* Колір рамки при наведенні */
+  --border-color-focus: var(--color-red-darker); /* Колір рамки при фокусі */
+
+  /* Інверсія тіні для світлої теми */
+  --shadow-primary: rgba(0, 0, 0, 0.1); /* Основна тінь */
+  --shadow-hover: rgba(0, 0, 0, 0.2); /* Тінь при наведенні */
+  --shadow-focus: rgba(0, 0, 0, 0.3); /* Тінь при фокусі */
+
+  /* Стилі для кнопки */
+  --btn-bg: var(--color-red); /* Фон кнопки */
+  --btn-text: var(--color-white); /* Колір тексту кнопки */
+
+  /* Стилі для кнопки при наведенні */
+  --btn-hover-bg: #cc0000; /* Темно-червоний фон при наведенні */
+  --btn-hover-text: var(--color-white); /* Колір тексту при наведенні */
+
+  /* Стилі для інпутів */
+  --input-bg: var(--color-white); /* Фон інпуту */
+  --input-text: var(--color-black); /* Колір тексту інпуту */
+  --input-border: var(--color-red); /* Колір рамки інпуту */
+  --input-border-hover: var(--color-red-light); /* Колір рамки при наведенні */
+  --input-border-focus: var(--color-red-darker); /* Колір рамки при фокусі */
+  --input-shadow: rgba(255, 0, 0, 0.2); /* Тінь інпуту */
+  --input-shadow-focus: rgba(255, 0, 0, 0.4); /* Тінь при фокусі */
+}
+
+
+/* Apply styles to autofilled input fields in different states */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  /* Create an outer glow effect around the input field */
+  box-shadow:
+          0 0 0 3px var(--btn-text), /* Outer border effect */
+          0 0 0 500px var(--btn-text) inset !important; /* Background color filling effect */
+
+  /* Set the text color inside the autofilled input */
+  color: var(--input-text) !important;
+  -webkit-text-fill-color: var(--input-text) !important; /* Ensure text color applies correctly */
+}
+
+p {
+  font-size: var(--font-size-base);
+  text-align: justify;
+  white-space: normal;
+  word-break: break-word;
+}
+
+
+

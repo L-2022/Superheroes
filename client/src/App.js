@@ -7,17 +7,21 @@ import { observer } from "mobx-react-lite";
 
 const App = observer(() => {
 
-  useEffect(() => {
-  }, []);
+    useEffect(() => {
+    }, []);
 
-  return (
-    
-    <BrowserRouter>
-      <NavBar />     
-      <AppRouter />
-      <FooterBar />
-    </BrowserRouter>
-  );
+    return (
+
+            <BrowserRouter >
+                <div className="layout">
+                    <main >
+                        <NavBar />
+                        <AppRouter />
+                        <FooterBar />
+                    </main>
+                </div>
+            </BrowserRouter>
+    );
 });
 
 export default App;
