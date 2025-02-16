@@ -1,32 +1,37 @@
-  .pagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .page {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .page:hover {
-    background-color: var(--btn-hover-bg);
-  }
-
-  .active {
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: var(--btn-hover-bg-active);
-    color: var(--btn-hover-text-active);
-  }
-
 .pagination {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin: 10px 5px;
 }
+
+.page, .active {
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--btn-bg);
+    color: var(--text-primary);
+    box-shadow: 0 4px 6px var(--shadow-primary);
+    font-size: var(--font-size-base);
+}
+
+.page:hover, .active {
+    background-color: var(--btn-hover-bg);
+    box-shadow: 0 6px 10px var(--shadow-hover);
+    border-color: var(--border-color-hover);
+}
+
+.page:focus {
+    border-color: var(--border-color-focus);
+    /*box-shadow: 0 0 0 5px var(--shadow-focus);*/
+}
+
+/*.active {*/
+/*    background-color: var(--btn-hover-bg-active);*/
+/*    border: 1px solid var(--border-color-focus);*/
+/*    box-shadow: 0 4px 6px var(--shadow-focus);*/
+/*}*/

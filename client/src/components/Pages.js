@@ -22,9 +22,8 @@ const Pages = observer(() => {
     pages.push(i + 1);
   }
 
-  return (    
-      <div className={styles.pagination}>       
-
+  return (
+      <div className={styles.pagination}>
          {pages.map((page) => (
            <button
             key={page}
@@ -34,7 +33,7 @@ const Pages = observer(() => {
             {page}
           </button>
          ))}
-      </div>     
+      </div>
   );
 });
 

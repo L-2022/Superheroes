@@ -1,0 +1,40 @@
+.footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.text {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.social {
+    display: none;
+    margin-top: 10px;
+}
+
+.socialLink {
+    margin: 0 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: var(--color-white);
+    transition: color 0.3s ease;
+}
+
+.socialLink:hover {
+    color: var(--color-green-light);
+}

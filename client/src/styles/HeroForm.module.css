@@ -6,11 +6,12 @@
   max-width: 90%;
   margin: 5% auto;
   color: var(--text-primary);
+  font-size: var(--font-size-large);
 }
 
 .create_hero {
   display: grid;
-  grid-auto-rows: minmax(80px, auto);
+  grid-auto-rows: minmax(auto, auto);
   gap: var(--spacing-small);
   width: 100%;
 }
@@ -21,21 +22,71 @@
   gap: var(--spacing-small);
 }
 
-.label_form_item, .label_form_description, .label_img, .wrapper_addSuperpower {
-  font-weight: bold;
+.label_form_item, .label_form_description {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+.wrapper_buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
+.wrapper_buttons button,
+.upload_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 50px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  color: var(--text-primary);
+}
 
+.wrapper_buttons button:first-child {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.upload_button {
+  background: linear-gradient(135deg, #7272dc, #4f4fc4);
+  position: relative;
+}
+
+.upload_button input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+.submit_btn {
+  background: linear-gradient(45deg, #32CD32, #228B22);
+  color: white;
+}
+
+.wrapper_buttons button:hover,
+.upload_button:hover,
+.submit_btn:hover {
+  opacity: 0.8;
+}
 
 .input_field, .label_form_textarea, .input_superpower {
   padding: 3px;
   border-radius: 4px;
-  width: 100%;
-  font-size: var(--font-size-base);
-  /*box-shadow: 0 0 0 1px var(--input-border);*/
+  font-size: var(--font-size-large);
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--input-border);
@@ -47,27 +98,20 @@
   resize: vertical;
 }
 
-.add_img__btn, .remove_superpower, .upload_button, .galery__remove_button, .submit_btn {
+.remove_superpower, .upload_button, .galery__remove_button, .submit_btn {
   border-radius: 4px;
   cursor: pointer;
   border: none;
   padding: 5px;
 }
 
-.remove_superpower {
-  border-radius: 50%;
+.superpowers {
+  width: 100%;
+  display: grid;
+  gap: var(--spacing-small);
 }
 
-.add_img__btn {
-  box-shadow: 0 0 0 2px var(--input-border);
-  background-color: transparent;
-  width: 90%;
-  align-items: center;
-
-  color: var(--font-primary);
-}
-
-.lists_superpoweres, .create_hero__galery {
+ .create_hero__galery {
   width: 100%;
   display: grid;
   gap: var(--spacing-small);
@@ -83,7 +127,11 @@
 .remove_superpower {
   background-color: var(--color-red-dark);
   color: var(--text-primary);
-  padding: 5px 8px;
+  border-radius: 10%;
+  /*padding: 8px 8px;*/
+  min-width: 30px;
+  height: auto;
+  margin-right: 10px;
 }
 
 .upload_button {
@@ -103,6 +151,11 @@
 
 .hidden_input {
   display: none;
+}
+
+.submit_btn {
+  background-color: var(--color-green-dark);
+  color: var(--text-primary);
 }
 
 .galery__item_img {
@@ -126,18 +179,6 @@
   top: 5px;
   right: 5px;
   padding: 5px 10px;
-}
-
-.create_hero__btn {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  height: 50px;
-}
-
-.submit_btn {
-  background-color: var(--color-green-dark);
-  color: var(--text-primary);
 }
 
 @media (max-width: 750px) {

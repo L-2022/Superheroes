@@ -4,6 +4,8 @@ import { HERO_ROUTE } from "../../utils/consts";
 import { changeHero } from "../../http/heroesAPI";
 import styles from "../../styles/HeroForm.module.css";
 import HeroForm from "./HeroForm";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UpdateHero({ heroes, id }) {
   const history = useHistory();
@@ -13,16 +15,16 @@ function UpdateHero({ heroes, id }) {
       const data = await changeHero(formData, id);
 
       if (data) {
-        alert("The hero was changed successfully");
+        toast.error("The hero was changed successfully");
         history.push(HERO_ROUTE);
       } else {
-        alert("The hero has not been changed");
+        toast.error("The hero has not been changed");
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
-        alert("The hero has not been updated. " + error.response.data.error);
+        toast.error("The hero has not been updated. " + error.response.data.error);
       } else {
-        alert("An error occurred: " + error.message);
+        toast.error("An error occurred: " + error.message);
       }
     }
   };

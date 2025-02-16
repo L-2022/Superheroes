@@ -1,7 +1,7 @@
 .wrapper_heroes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
+  gap: 10px;
   justify-items: center;
 }
 
@@ -11,16 +11,15 @@
   justify-content: center;
   position: relative;
   width: 100%;
-  max-width: 300px;
-  min-height: 300px;
+  max-width: 200px;
+  min-height: 200px;
   overflow: hidden;
 }
 
 .hero {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  min-height: 300px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,10 +31,14 @@
 }
 
 .hero:hover .hero__nickname {
-  color: var(--color-green);
+  color: var(--border-color-focus);
   background: rgba(0, 0, 0, 0.7);
   transform: scale(1.4);
   transition: all 0.3s ease;
+}
+
+.hero:hover {
+  border: 3px solid var(--border-color-focus);
 }
 
 .hero__img {
@@ -47,9 +50,7 @@
   left: 0;
 }
 
-.hero:hover {
-  background: rgba(0, 0, 255, 0.2);
-}
+
 
 .hero__nickname {
   position: relative;
@@ -57,7 +58,7 @@
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-black-hafl-transperent);
   padding: 5px 10px;
   border-radius: 5px;
 }

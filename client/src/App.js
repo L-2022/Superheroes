@@ -1,25 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/UI/NavBar";
-import FooterBar from "./components/UI/Footer";
+import Footer from "./components/UI/Footer";
 import { observer } from "mobx-react-lite";
+import { ToastContainer } from "react-toastify";
 
 const App = observer(() => {
-
-    useEffect(() => {
-    }, []);
-
     return (
-
             <BrowserRouter >
                 <div className="layout">
+                    <NavBar />
                     <main >
-                        <NavBar />
                         <AppRouter />
-                        <FooterBar />
                     </main>
-                </div>
+
+                </div><Footer />
+                <ToastContainer position="top-right" autoClose={3000} />
             </BrowserRouter>
     );
 });

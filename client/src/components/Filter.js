@@ -57,6 +57,7 @@ export const Filter = observer(() => {
                         size={35}
                 />
                 <input
+                        autoComplete="off"
                         type="text"
                         name="text"
                         placeholder="Search"

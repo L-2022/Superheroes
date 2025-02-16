@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/HeroForm.module.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HeroForm = ({ initialValues, onSubmit }) => {
   const [nickname, setNickname] = useState(initialValues?.nickname || "");
@@ -40,7 +42,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
         { titleSuperpower: "", id: Date.now() },
       ]);
     } else {
-      alert("A maximum of 5 superpowers can be added");
+      toast.error("A maximum of 5 superpowers can be added");
     }
   };
 
@@ -70,7 +72,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
     if (images.length < 5) {
       setImages([...images, image]);
     } else {
-      alert("A maximum of 5 images can be uploaded");
+      toast.error("A maximum of 5 images can be uploaded");
     }
   };
 
@@ -88,7 +90,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
     if (images.length < 5) {
       addImage(e.target.files[0]);
     } else {
-      alert("A maximum of 5 images can be uploaded");
+      toast.error("A maximum of 5 images can be uploaded");
     }
   };
 
@@ -185,16 +187,28 @@ const HeroForm = ({ initialValues, onSubmit }) => {
               />
             </label>
 
-            <label className={styles.wrapper_addSuperpower}>
+            <label className={styles.wrapper_buttons}>
               <button
-                      className={styles.add_img__btn}
+                      className={styles.wrapper_buttons}
                       variant={"outline-dark"}
                       onClick={addSuperpower}
               >
-                Add a new superpower
+                Add superpower
               </button>
+              <label className={styles.upload_button}>
+                Add photo
+                <input
+                        type="file"
+                        className={styles.hidden_input}
+                        onChange={handleFileChange}
+                />
+              </label>
+              <button className={styles.submit_btn} type="submit">
+              Done
+            </button>
             </label>
-            <div className={styles.lists_superpoweres}>
+
+            <div className={styles.superpowers}>
               {listSuperpowers.map((i, index) => (
                       <div className={styles.item_superpower} key={i.id}>
                         <input
@@ -204,7 +218,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
                                 onChange={(e) =>
                                         changeSuperpower("titleSuperpower", e.target.value, i.id)
                                 }
-                                placeholder="Enter superpower name"
+                                placeholder="superpower"
                         />
                         <button
                                 className={styles.remove_superpower}
@@ -216,16 +230,6 @@ const HeroForm = ({ initialValues, onSubmit }) => {
                       </div>
               ))}
             </div>
-            <label className={styles.upload_button}>
-              Upload Photo
-              <input
-                      type="file"
-                      className={styles.hidden_input}
-                      onChange={handleFileChange}
-              />
-            </label>
-
-
             <div className={styles.create_hero__galery}>
               {images.map((image, index) => (
                       <div className={styles.galery__item_img} key={index}>
@@ -246,12 +250,6 @@ const HeroForm = ({ initialValues, onSubmit }) => {
                         </button>
                       </div>
               ))}
-            </div>
-            <div className={styles.create_hero__btn}>
-              <button className={styles.submit_btn} type="submit">
-                {!initialValues ? "Create": "Change"}
-
-              </button>
             </div>
           </form>
   );

@@ -1,9 +1,9 @@
 .hero_wrapper {
   color: var(--text-primary);
   display: grid;
-  grid-template-columns: 1fr;
-  padding: 0 var(--spacing-large);
+  padding: 0 10px;
 }
+
 
 .hero_name {
   text-align: center;
@@ -12,39 +12,91 @@
   border-radius: 5px;
   box-shadow: 0 0 5px var(--shadow-primary);
   font-family: var(--font-primary);
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .wrapper__info_hero {
-  display: flex;
-  margin: 20px 5px;
-
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
 }
 
 .main_hero_img {
-  width: 60%;
-  border-radius: 5px;
+  width: 100%;
+  /*max-height: 30vh;*/
   height: auto;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
-.hero_name_small {
-  text-align: center;
-  color: var(--color-blue-dark);
-  border-radius: 5px;
+.info_hero {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 30%;
+}
+
+.label {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+}
+
+.label .short {
+  padding: 5px 0;
+}
+
+.label.long {
+  text-align: justify;
+}
+
+.label > p, .superpower_item > p{
+  font-size: var(--font-size-base);
+}
+.superpower_item > p{
+  font-size: var(--font-size-small);
+}
+
+.list_superpowers {
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.superpower_item {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background-color: var(--color-green-dark);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  font-family: var(--font-secondary);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-small);
+}
+
+.gallery img {
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
 }
 
 .container_btn {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-base);
+  gap: 5px;
   margin: var(--spacing-small);
   flex-wrap: nowrap;
   flex-direction: column;
-  align-items: center;}
+  align-items: center;
+}
 
 .btn {
   color: var(--btn-text);
@@ -63,101 +115,4 @@
 
 .btn.delete {
   background-color: var(--color-red);
-}
-
-.info_hero {
-  max-width: 100%;
-  margin: var(--spacing-small);
-  border-radius: 10px;
-  display: grid;
-  gap: 10px;
-}
-
-.label {
-  border-radius: 4px;
-}
-
-.label.short {
-  padding: var(--spacing-base);
-}
-
-.label.long {
-  text-align: justify;
-}
-
-
-.list_superpowers {
-  padding: var(--spacing-large);
-  border-radius: 4px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: var(--spacing-base);
-}
-
-.superpower_item {
-  margin: 2px 5px;
-  border-radius: 4px;
-  background-color: var(--color-green-dark);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--spacing-small);
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--spacing-small);
-}
-
-.gallery img {
-  border-radius: 5px;
-  width: 100%;
-  height: auto;
-}
-
-
-
-/* Адаптивність */
-@media (max-width: 1024px) {
-  .hero_name {
-    font-size: 40px;
-  }
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .hero_wrapper {
-    padding: 0 20px;
-  }
-  .hero_name {
-    font-size: 35px;
-  }
-  .list_superpowers {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .hero_name {
-    font-size: 28px;
-  }
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-  .container_btn {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 320px) {
-  .hero_name {
-    font-size: 24px;
-  }
-  .list_superpowers {
-    grid-template-columns: 1fr;
-  }
 }
