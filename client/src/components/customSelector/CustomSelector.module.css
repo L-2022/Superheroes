@@ -1,0 +1,101 @@
+.selector__menu {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+}
+
+.selector__drop {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    overflow: hidden;
+    margin-top: -20px;
+    z-index: 10;
+}
+
+.selector__open .selector__drop {
+    display: block;
+    width: 100%;
+
+}
+
+.menu__btn, .menu__active_btn {
+    width: 100%;
+    min-width: 160px;
+    height: 100%;
+    padding: 10px 20px;
+    border-radius: 6px;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    z-index: 200;
+    position: relative;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: var(--font-size-base);
+}
+
+.menu__btn:hover,
+.menu__active_btn {
+    border: 1px solid var(--btn-bg);
+    background-color: var(--border-color);
+    color: var(--text-primary-inv);
+}
+
+.menu__icon_up,
+.menu__icon_down {
+    color: var(--border-color);
+    width: 18px;
+    height: 18px;
+}
+
+.menu__icon_up {
+    transform: rotate(0deg);
+    color: var(--border-color-hover-inv);
+}
+
+.menu__icon_down {
+    transform: rotate(180deg);
+    filter: brightness(.5);
+}
+
+.menu__btn:hover .menu__icon_down {
+    filter: brightness(1);
+}
+
+.selector__drop > button {
+    width: 100%;
+    padding: 10px 0 10px 20px;
+    background-color: var(--btn-bg);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    border: none;
+    cursor: pointer;
+}
+
+.selector__drop button:first-child {
+    padding-top: 30px;
+}
+
+.selector__drop button:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.selector__drop button:hover {
+    font-weight: bold;
+    background-color: var(--border-color);
+    color: var(--text-primary-inv);
+}
+
+
+
+
+
+
+
+

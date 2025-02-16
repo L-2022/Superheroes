@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/HeroForm.module.css";
+import { FaMinus, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -225,7 +226,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
                                 onClick={() => removeSuperpower(index)}
                                 variant={"outline-danger"}
                         >
-                          -
+                          <FaMinus className={styles.remove_icon} />
                         </button>
                       </div>
               ))}
@@ -246,7 +247,7 @@ const HeroForm = ({ initialValues, onSubmit }) => {
                                 className={styles.galery__remove_button}
                                 onClick={() => removeImage(index)}
                         >
-                          X
+                          <FaTimes className={styles.remove_icon} />
                         </button>
                       </div>
               ))}

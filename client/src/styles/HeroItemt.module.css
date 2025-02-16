@@ -31,14 +31,14 @@
 }
 
 .hero:hover .hero__nickname {
-  color: var(--border-color-focus);
+  color: var(--border-color-hover);
   background: rgba(0, 0, 0, 0.7);
   transform: scale(1.4);
   transition: all 0.3s ease;
 }
 
 .hero:hover {
-  border: 3px solid var(--border-color-focus);
+  border: 3px solid var(--border-color-hover);
 }
 
 .hero__img {
@@ -50,8 +50,6 @@
   left: 0;
 }
 
-
-
 .hero__nickname {
   position: relative;
   z-index: 2;
@@ -59,6 +57,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   background: var(--color-black-hafl-transperent);
+  background-color: var(--color-black-hafl-transperent);
   padding: 5px 10px;
   border-radius: 5px;
 }

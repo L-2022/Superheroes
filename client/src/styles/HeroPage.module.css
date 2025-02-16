@@ -1,14 +1,11 @@
 .hero_wrapper {
   color: var(--text-primary);
-  display: grid;
-  padding: 0 10px;
 }
-
 
 .hero_name {
   text-align: center;
   font-size: var(--font-size-heading);
-  color: var(--color-red-dark);
+  color: var(--gradient-superpower-item);
   border-radius: 5px;
   box-shadow: 0 0 5px var(--shadow-primary);
   font-family: var(--font-primary);
@@ -37,6 +34,11 @@
   gap: 10px;
   height: 30%;
 }
+.info_hero >p {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 3px;
+}
 
 .label {
   font-size: var(--font-size-base);
@@ -47,13 +49,10 @@
   padding: 5px 0;
 }
 
-.label.long {
+.label {
   text-align: justify;
 }
 
-.label > p, .superpower_item > p{
-  font-size: var(--font-size-base);
-}
 .superpower_item > p{
   font-size: var(--font-size-small);
 }
@@ -70,7 +69,9 @@
 .superpower_item {
   padding: 2px 5px;
   border-radius: 4px;
-  background-color: var(--color-green-dark);
+  border: 1px solid var(--border-color);
+  /*border: 1px solid var(--gradient-superpower-item);*/
+  /*background: var(--gradient-superpower-item);*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,23 +91,27 @@
 
 .container_btn {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 5px;
   margin: var(--spacing-small);
-  flex-wrap: nowrap;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
   align-items: center;
+  font-weight: 600;
 }
 
 .btn {
-  color: var(--btn-text);
+  color: var(--text-primary);
   border: none;
   padding: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: var(--color-blue-dark);
+  background-color: var(--color-blue-light);
   min-width: 100px;
-  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .btn .change {
@@ -114,5 +119,15 @@
 }
 
 .btn.delete {
-  background-color: var(--color-red);
+  background-color: var(--color-red-dark);
+}
+
+.btn:hover {
+  color: var(--text-primary-inv);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: scale(0.95);
 }

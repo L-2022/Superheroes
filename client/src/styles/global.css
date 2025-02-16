@@ -51,7 +51,6 @@ button:focus:not(:focus-visible) {
 }
 
 html {
-  font-size: 65%;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -117,107 +116,119 @@ html {
   --color-red-darker: #990000; /* Ще темніший червоний */
 
   --color-green: #10a810; /* Зелений */
-  --color-green-light: #66ff66; /* Світло-зелений */
+  --color-green-light: rgba(77, 213, 77); /* Світло-зелений */
   --color-green-lighter: #99ff99; /* Ще світліший зелений */
   --color-green-dark: #00cc00; /* Темно-зелений */
   --color-green-darker: #009900; /* Ще темніший зелений */
 
-  --color-blue: #0000ff; /* Синій */
-  --color-blue-light: #6666ff; /* Світло-синій */
+  --color-blue: #3030fa; /* Синій */
+  --color-blue-light: rgb(114, 123, 255); /* Світло-синій */
   --color-blue-lighter: #9999ff; /* Ще світліший синій */
   --color-blue-dark: #0000cc; /* Темно-синій */
   --color-blue-darker: #000099; /* Ще темніший синій */
-
-  /*!*--background: url('../assets/D.webp');*!*/
-  /*background-image: url('../assets/D.webp');*/
 }
 
-/* Загальні змінні для темної теми */
 :root {
-  /* Основний фон сторінки */
+  --color-black: #000000;
+  --color-black-hafl-transperent: rgba(0, 0, 0, 0.5);
+  --color-black-light: #333333;
+
+  --color-white: #ffffff;
+  --color-white-dark: #e0e0e0;
+
+  --color-gray-light: #b79494;
+  --color-gray-lighter: #f0f0f0;
+  --color-gray-darker: #b0b0b0;
+  --color-gray-dark: #292929;
+  --color-gray-darkest: #1a1a1a;
+
+  --color-red: #ff0000;
+  --color-red-light: #ff6666;
+  --color-red-dark: #cc0000;
+  --color-red-darker: #990000;
+
+  --color-green: #10a810;
+  --color-green-light: rgba(77, 213, 77);
+  --color-green-lighter: #99ff99;
+  --color-green-dark: #00cc00;
+  --color-green-darker: #009900;
+
+  --color-blue: #3030fa;
+  --color-blue-light: rgb(114, 123, 255);
+  --color-blue-lighter: #9999ff;
+  --color-blue-dark: #0000cc;
+  --color-blue-darker: #000099;
+}
+
+:root {
+  --gradient-superpower-item: linear-gradient(135deg, var(--color-green-dark) 0%, var(--color-blue) 80%);
+
   --bg-primary: var(--color-black);
   --bg-filter: var(--border-color-focus);
   --bg-logo: var(--color-green-dark);
 
-  /* Основний колір тексту */
   --text-primary: var(--color-white);
   --text-primary-inv: var(--color-black);
 
-  /* Колір рамки для елементів */
   --border-color: var(--color-green-dark);
-  --border-color-hover: var(--color-green-light); /* Колір рамки при наведенні */
-  --border-color-focus: var(--color-green-darker); /* Колір рамки при фокусі */
+  --border-color-hover: var(--color-green-light);
+  --border-color-focus: var(--color-green-darker);
 
-  /* Колір рамки для елементів */
-  --border-color-inv: var(--color-red-dark);
-  --border-color-hover-inv: var(--color-red-light); /* Колір рамки при наведенні */
-  --border-color-focus-inv: var(--color-red-darker); /* Колір рамки при фокусі */
+  --border-color-inv: var(--color-blue-dark);
+  --border-color-hover-inv: var(--color-blue-light);
+  --border-color-focus-inv: var(--color-blue-darker);
 
+  --shadow-primary: rgba(255, 255, 255, 0.2);
+  --shadow-hover: rgba(255, 255, 255, 0.3);
+  --shadow-focus: rgba(255, 255, 255, 0.4);
 
-  /* Інверсія тіні для темної теми */
-  --shadow-primary: rgba(255, 255, 255, 0.2); /* Основна тінь */
-  --shadow-hover: rgba(255, 255, 255, 0.3); /* Тінь при наведенні */
-  --shadow-focus: rgba(255, 255, 255, 0.4); /* Тінь при фокусі */
+  --btn-bg: var(--color-green-light);
+  --btn-text: var(--color-white);
+  --btn-hover-bg: var(--color-green-darker);
+  --btn-hover-text: var(--color-black);
+  --btn-hover-bg-active: var(--color-blue-darker);
+  --btn-hover-text-active: var(--color-black);
 
-  /* Стилі для кнопки */
-  --btn-bg: var(--color-blue-light); /* Фон кнопки */
-  --btn-text: var(--color-white); /* Колір тексту кнопки */
-
-  /* Стилі для кнопки при наведенні */
-  --btn-hover-bg: var(--color-green); /* Фон при наведенні */
-  --btn-hover-text: var(--color-black); /* Колір тексту при наведенні */
-
-  /* Стилі для кнопки при активному стані */
-  --btn-hover-bg-active: var(--color-red-darker); /* Фон при активному стані */
-  --btn-hover-text-active: var(--color-black); /* Колір тексту при активному стані */
-
-  /* Стилі для інпутів */
-  --input-bg: var(--color-gray-dark); /* Фон інпуту */
-  --input-text: var(--color-white); /* Колір тексту інпуту */
-  --input-border: var(--color-green); /* Колір рамки інпуту */
-  --input-border-hover: var(--color-green-light); /* Колір рамки при наведенні */
-  --input-border-focus: var(--color-green-darker); /* Колір рамки при фокусі */
-  --input-shadow: rgba(0, 255, 0, 0.2); /* Тінь інпуту */
-  --input-shadow-focus: rgba(0, 255, 0, 0.4); /* Тінь при фокусі */
+  --input-bg: var(--color-gray-dark);
+  --input-text: var(--color-white);
+  --input-border: var(--color-green);
+  --input-border-hover: var(--color-green-light);
+  --input-border-focus: var(--color-green-darker);
+  --input-shadow: rgba(0, 255, 0, 0.2);
+  --input-shadow-focus: rgba(0, 255, 0, 0.4);
 }
 
-/* Тема "світла" */
 [data-theme="light"] {
-  /* Основний фон сторінки */
+  --gradient-superpower-item: linear-gradient(135deg, var(--color-blue-light) 0%, white 100%);
   --bg-primary: var(--color-gray-light);
   --bg-logo: var(--color-black);
 
-  /* Основний колір тексту */
   --text-primary: var(--color-black);
   --text-primary-inv: var(--color-white);
 
-  /* Колір рамки для елементів */
-  --border-color: var(--color-red-dark);
-  --border-color-hover: var(--color-red-light); /* Колір рамки при наведенні */
-  --border-color-focus: var(--color-red-darker); /* Колір рамки при фокусі */
+  --border-color: var(--color-blue-dark);
+  --border-color-hover: var(--color-blue-light);
+  --border-color-focus: var(--color-blue-darker);
 
-  /* Інверсія тіні для світлої теми */
-  --shadow-primary: rgba(0, 0, 0, 0.1); /* Основна тінь */
-  --shadow-hover: rgba(0, 0, 0, 0.2); /* Тінь при наведенні */
-  --shadow-focus: rgba(0, 0, 0, 0.3); /* Тінь при фокусі */
+  --shadow-primary: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.2);
+  --shadow-focus: rgba(0, 0, 0, 0.3);
 
-  /* Стилі для кнопки */
-  --btn-bg: var(--color-red); /* Фон кнопки */
-  --btn-text: var(--color-white); /* Колір тексту кнопки */
-
-  /* Стилі для кнопки при наведенні */
-  --btn-hover-bg: var(--color-red-darker);
+  --btn-bg: var(--color-blue-light);
+  --btn-text: var(--color-white);
+  --btn-hover-bg: var(--color-blue);
   --btn-hover-text: var(--color-white);
 
-  /* Стилі для інпутів */
-  --input-bg: var(--color-white); /* Фон інпуту */
-  --input-text: var(--color-black); /* Колір тексту інпуту */
-  --input-border: var(--color-green-darker); /* Колір рамки інпуту */
-  --input-border-hover: var(--color-red-light); /* Колір рамки при наведенні */
-  --input-border-focus: var(--color-red-darker); /* Колір рамки при фокусі */
-  --input-shadow: rgba(255, 0, 0, 0.2); /* Тінь інпуту */
-  --input-shadow-focus: rgba(255, 0, 0, 0.4); /* Тінь при фокусі */
+  --input-bg: var(--color-white);
+  --input-text: var(--color-black);
+  --input-border: var(--color-green-darker);
+  --input-border-hover: var(--color-red-light);
+  --input-border-focus: var(--color-green);
+  --input-shadow: rgba(255, 0, 0, 0.2);
+  --input-shadow-focus: rgba(255, 0, 0, 0.4);
 }
+
+
 input::placeholder {
   color: var(--text-primary);
   opacity: 0.8;
@@ -238,8 +249,8 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--input-text) !important; /* Ensure text color applies correctly */
 }
 
-p {
-  font-size: var(--font-size-small);
+p, button {
+  font-size: var(--font-size-base);
   text-align: justify;
   white-space: normal;
   word-break: break-word;

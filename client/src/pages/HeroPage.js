@@ -1,4 +1,4 @@
-import { NavLink, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { HEROES_ROUTE } from "../utils/consts";
 import styles from "../styles/HeroPage.module.css";
@@ -91,13 +91,14 @@ const HeroPage = () => {
                           )}
 
                           <div className={styles.info_hero}>
-                            <h2 className={`${styles.label} ${styles.short}`}>
-                              Real name: <p>{heroes.real_name}</p>
+                            <h2 className={`${styles.label}`}>
+                              Real name:
                             </h2>
-                            <h2 className={`${styles.label} ${styles.short}`}>
-                              Catch phrase: <p>{heroes.catch_phrase}</p>
+                            <p>{heroes.real_name}</p>
+                            <h2 className={styles.label}>
+                              Catch phrase:
                             </h2>
-
+                            <p>{heroes.catch_phrase}</p>
                           </div>
                         </div>
 
@@ -105,7 +106,6 @@ const HeroPage = () => {
                         <div className={styles.info_hero}>
                           {/* Суперсили */}
                           <h2 className={styles.label}>Superpowers:</h2>
-                          <div className={styles.list_superpowers}>
                             {heroes.listSuperpowers.length > 0 ? (
                                     heroes.listSuperpowers.map((listSuperpower) => (
                                             <div className={styles.superpower_item} key={listSuperpower.id}>
@@ -115,13 +115,14 @@ const HeroPage = () => {
                             ) : (
                                     <>Without Superpowers</>
                             )}
-                          </div>
-                          <h1 className={`${styles.label} ${styles.long}`}>
-                            Origin description: <p>{heroes.origin_description}</p>
-                          </h1>
-                          <h2 className={`${styles.label} ${styles.long}`}>
-                            Achievement: <p>{heroes.superpowers}</p>
+                          <h2 className={styles.label}>
+                            Origin description:
                           </h2>
+                          <p>{heroes.origin_description}</p>
+                          <h2 className={styles.label}>
+                            Achievement:
+                          </h2>
+                          <p>{heroes.superpowers}</p>
                         </div>
 
 
@@ -129,7 +130,7 @@ const HeroPage = () => {
                         {/* Галерея */}
                         <h2 className={styles.label}>Images:</h2>
                         <div className={styles.gallery}>
-                          {heroes.SuperheroImages.length > 0 ? (
+                          {heroes.SuperheroImages.length > 1 ? (
                                   heroes.SuperheroImages.map((itemImg) => (
                                           <div key={itemImg.id}>
                                             <img className={styles.img} src={process.env.REACT_APP_API_URL + itemImg.image} alt="Hero" />

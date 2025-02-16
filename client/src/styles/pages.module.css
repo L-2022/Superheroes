@@ -8,13 +8,13 @@
 
 .page, .active {
     border: 1px solid var(--border-color);
-    padding: 8px 16px;
+    padding: 4px 16px;
     border-radius: 20px;
     margin: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: var(--btn-bg);
-    color: var(--text-primary);
+    color: var(--color-black-light);
     box-shadow: 0 4px 6px var(--shadow-primary);
     font-size: var(--font-size-base);
 }
@@ -23,15 +23,7 @@
     background-color: var(--btn-hover-bg);
     box-shadow: 0 6px 10px var(--shadow-hover);
     border-color: var(--border-color-hover);
+    font-weight: bold;
+    color: var(--color-white);
+    transform: scale(1.2);
 }
-
-.page:focus {
-    border-color: var(--border-color-focus);
-    /*box-shadow: 0 0 0 5px var(--shadow-focus);*/
-}
-
-/*.active {*/
-/*    background-color: var(--btn-hover-bg-active);*/
-/*    border: 1px solid var(--border-color-focus);*/
-/*    box-shadow: 0 4px 6px var(--shadow-focus);*/
-/*}*/

@@ -86,4 +86,7 @@ main {
     html {
         font-size: 42%;
     }
+    .layout {
+        padding: 0 1%;
+    }
 }
