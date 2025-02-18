@@ -1,7 +1,26 @@
 {
-  "name": "client",
+  "name": "client_superheroes",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://username.github.io/Superheroes",
+  "description": "A superhero directory web application built with React, showcasing the details of superheroes with search, filter, and pagination functionality.",
+  "author": "Vasyl Biliak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/L-2022/Superheroes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/L-2022/Superheroes/issues"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -24,12 +43,6 @@
     "sweetalert2": "^11.16.1",
     "web-vitals": "^0.2.4",
     "webpack": "^5.97.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

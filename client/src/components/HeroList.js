@@ -12,24 +12,25 @@ const HeroList = observer(() => {
     fetchHeroes(heroes.page, heroes.limit).then((data) => {
       heroes.setListSuperhero(data.superheroes);
       heroes.setTotalCount(data.total);
+      heroes.setModeDemo(data.mode);
     });
   }, [heroes.page, heroes.limit, heroes]);
 
   return (<>
-  
-  
-  
-   {heroes.listSuperhero.length > 0 ? (
-    <div className={styles.wrapper_heroes}>
-     
-       {heroes.listSuperhero.map((el, key) => (
-          <HeroItem key={key} superhero={el} />
-        ))} 
-      
-        </div>  ) : (
-        <p className={styles.mesage}>Not found heroes</p>
-      )}
-    </>
+
+
+
+            {heroes.listSuperhero.length > 0 ? (
+                    <div className={styles.wrapper_heroes}>
+
+                      {heroes.listSuperhero.map((el, key) => (
+                              <HeroItem key={key} superhero={el} />
+                      ))}
+
+                    </div>  ) : (
+                    <p className={styles.message}>Not found heroes</p>
+            )}
+          </>
   );
 });
 

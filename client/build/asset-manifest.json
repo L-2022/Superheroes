@@ -1,16 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.38da9fe0.css",
-    "main.js": "/static/js/main.d1637446.js",
-    "static/media/D.webp": "/static/media/D.d622409340e8bb7af244.webp",
-    "static/media/L.webp": "/static/media/L.2d671b8a4c2a45649fd6.webp",
-    "static/media/NoPhoto.png": "/static/media/NoPhoto.00cd547b7e267f71f9f5.png",
-    "index.html": "/index.html",
-    "main.38da9fe0.css.map": "/static/css/main.38da9fe0.css.map",
-    "main.d1637446.js.map": "/static/js/main.d1637446.js.map"
+    "main.css": "/Superheroes/static/css/main.ec17ac52.css",
+    "main.js": "/Superheroes/static/js/main.0e024c2a.js",
+    "static/media/image1.webp": "/Superheroes/static/media/image1.105d75135d31778281f2.webp",
+    "static/media/image4.webp": "/Superheroes/static/media/image4.daf464113e9a8b224b96.webp",
+    "static/media/image5.webp": "/Superheroes/static/media/image5.63f9afd15c521626f188.webp",
+    "static/media/image2.webp": "/Superheroes/static/media/image2.c2d302171c5dae3312a1.webp",
+    "static/media/D.webp": "/Superheroes/static/media/D.d622409340e8bb7af244.webp",
+    "static/media/L.webp": "/Superheroes/static/media/L.2d671b8a4c2a45649fd6.webp",
+    "static/media/image3.webp": "/Superheroes/static/media/image3.4b16a5e36998e0d498e9.webp",
+    "static/media/NoPhoto.png": "/Superheroes/static/media/NoPhoto.00cd547b7e267f71f9f5.png",
+    "index.html": "/Superheroes/index.html",
+    "main.ec17ac52.css.map": "/Superheroes/static/css/main.ec17ac52.css.map",
+    "main.0e024c2a.js.map": "/Superheroes/static/js/main.0e024c2a.js.map"
   },
   "entrypoints": [
-    "static/css/main.38da9fe0.css",
-    "static/js/main.d1637446.js"
+    "static/css/main.ec17ac52.css",
+    "static/js/main.0e024c2a.js"
   ]
 }

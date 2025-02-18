@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2"
 
 const HeroPage = () => {
-  const [heroes, setHeroes] = useState({ SuperheroImages: [], listSuperpowers: [] });
+  const [heroes, setHeroes] = useState({ SuperheroImages: [], listSuperpowers: []});
   const [changeHero, setChangeHero] = useState(false);
   const { id } = useParams();
   const history = useHistory();
@@ -51,8 +51,6 @@ const HeroPage = () => {
     return result.isConfirmed;
   };
 
-
-
     return (
             <div className={styles.hero_wrapper}>
               {changeHero ? (
@@ -75,18 +73,35 @@ const HeroPage = () => {
                           </button>
                         </div>
 
-                        {/* Ім'я героя */}
                         <h2 className={styles.hero_name}>{heroes.nickname}</h2>
 
-                        {/* Основна секція: зображення + інформація */}
                         <div className={styles.wrapper__info_hero}>
                           {heroes.SuperheroImages.length > 0 ? (
+                                          // <img
+                                          //         className={styles.main_hero_img}
+                                          //         src={process.env.REACT_APP_API_URL + heroes.SuperheroImages[0].image}
+                                          //         alt="Hero"
+                                          // />
+
+                                          // <img
+                                          //         className={styles.main_hero_img}
+                                          //         src={process.env.REACT_APP_API_URL + heroes.SuperheroImages[0].image
+                                          //                 ? process.env.REACT_APP_API_URL + heroes.SuperheroImages[0]?.image
+                                          //                 : `http://localhost:3000${heroes.SuperheroImages[0].image}`
+                                          //         }
+                                          //         alt="Hero"
+                                          // />
                                   <img
                                           className={styles.main_hero_img}
-                                          src={process.env.REACT_APP_API_URL + heroes.SuperheroImages[0].image}
+                                          src={
+                                            process.env.REACT_APP_API_URL_LOCAL
+                                                    ?`http://localhost:3000${heroes.SuperheroImages[0].image}`
+                                                    : `${process.env.REACT_APP_API_URL}${heroes.SuperheroImages[0].image}`
+                                          }
                                           alt="Hero"
                                   />
-                          ) : (
+
+                            ) : (
                                   <>Without Images</>
                           )}
 
@@ -133,7 +148,32 @@ const HeroPage = () => {
                           {heroes.SuperheroImages.length > 1 ? (
                                   heroes.SuperheroImages.map((itemImg) => (
                                           <div key={itemImg.id}>
-                                            <img className={styles.img} src={process.env.REACT_APP_API_URL + itemImg.image} alt="Hero" />
+                                            {/*<img className={styles.img} src={process.env.REACT_APP_API_URL + itemImg.imagealt="Hero" />alt="Hero" />*/}
+                                            {/*<img className={styles.img}*/}
+                                            {/*     src={heroes + itemImg.image ?*/}
+                                            {/*             `http://localhost:3000${itemImg.image}`*/}
+                                            {/*             : ""}*/}
+                                            {/*     alt="Hero" />*/}
+                                            {/*<img className={styles.img} src={*/}
+                                            {/*  process.env.REACT_APP_API_URL + heroes.SuperheroImages[0]?.image*/}
+                                            {/*? `${process.env.REACT_APP_API_URL || "http://localhost:3000"}${itemImg.image}`*/}
+                                            {/*: ""}*/}
+                                            {/*alt="Hero" />*/}
+
+                                            <img
+                                                    className={styles.img}
+                                                    src={
+                                                      process.env.REACT_APP_API_URL_LOCAL
+                                                              ? `http://localhost:3000${itemImg.image}`
+                                                              : `${process.env.REACT_APP_API_URL}${itemImg.image}`
+                                                    }
+                                                    alt="Hero"
+                                            />
+
+
+
+
+
                                           </div>
                                   ))
                           ) : (
