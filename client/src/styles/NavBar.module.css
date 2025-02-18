@@ -13,20 +13,19 @@
 }
 
 .header__logo {
+  padding: 5px;
   width: 80px;
 }
 
 .header__logo > * {
   width: 100%;
   height: auto;
-  color: var(--bg-logo);
 }
 
 .header__logo:hover > * {
   width: 100%;
   height: auto;
-  color: var(--border-color-focus);
-
+  filter: drop-shadow(1px 0px 1px var(--border-color));
 }
 
 .header__links {

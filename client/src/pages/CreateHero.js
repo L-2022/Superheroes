@@ -15,7 +15,11 @@ function CreateHero() {
   const handleSubmit = async (formData) => {
     try {
       const data = await createHero(formData);
-
+      if (process.env.REACT_APP_DEMO_MODE) {
+        toast.warn("This is a demo version, you cannot create or change heroes here");
+        history.push(HERO_ROUTE);
+        return;
+      }
       if (data) {
         toast.error("The hero was successfully created");
         history.push(HERO_ROUTE);
@@ -28,6 +32,7 @@ function CreateHero() {
       } else {
         toast.error("An error occurred: " + error.message);
       }
+
     }
   };
 

@@ -2,9 +2,9 @@ import React from "react";
 import { ADD_HERO_ROUTE, HEROES_ROUTE } from "../../utils/consts";
 import { observer } from "mobx-react-lite";
 import { useHistory, NavLink, useRouteMatch } from "react-router-dom";
-import { GiNinjaHeroicStance } from "react-icons/gi";
 import styles from "../../styles/NavBar.module.css";
 import ThemeSwitcher from "../ThemeSwitcher";
+import CustomSVG from "../Logo";
 
 const NavBar = observer(() => {
   const history = useHistory();
@@ -13,7 +13,7 @@ const NavBar = observer(() => {
   return (
     <header className={styles.header}>
       <NavLink to={HEROES_ROUTE} className={styles.header__logo}>
-        <GiNinjaHeroicStance />
+          <CustomSVG color="var(--bg-logo)" />
       </NavLink>
       <div className={styles.header__links}>
           <ThemeSwitcher />

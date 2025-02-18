@@ -1,7 +1,7 @@
 import { $host } from "./index";
-import {createHeroDemo, deleteHeroDemo, getHeroesDemo, getOneHeroDemo} from "./defaultHeroes";
+import { createHeroDemo, deleteHeroDemo, getHeroesDemo, getOneHeroDemo} from "./defaultHeroes";
 
-let DEMO_MODE = !!process.env.REACT_APP_API_URL_LOCAL && process.env.REACT_APP_API_URL_LOCAL !== "false";
+let DEMO_MODE = !process.env.REACT_APP_DEMO_MODE;
 
 export const fetchHeroes = async (page, limit, dateCreation, searchText) => {
   if (DEMO_MODE) {
@@ -26,6 +26,7 @@ export const createHero = async (hero) => {
 
   try {
     const { data } = await $host.post("/api/heroes/", hero);
+
     return data;
   } catch (error) {
     console.error("Error creating hero:", error);
@@ -34,7 +35,9 @@ export const createHero = async (hero) => {
 };
 
 export const changeHero = async (changedHero, id) => {
-
+  if (DEMO_MODE) {
+    return "CHANGE DEMO HERO";
+  }
   try {
     const { data } = await $host.put(`/api/heroes/${id}`, changedHero);
     return data;

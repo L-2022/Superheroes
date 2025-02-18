@@ -2,15 +2,16 @@ import { useHistory } from "react-router-dom";
 import { HERO_ROUTE } from "../../utils/consts";
 import styles from "../../styles/HeroItemt.module.css";
 
-import NoPhoto from "../../assets/NoPhoto.png";
+import NoPhoto from "../../assets/NoPhoto 2.png";
+// import NoPhoto from "../../assets/NoImageHero.svg";
 
 const HeroItem = ({ superhero }) => {
     const history = useHistory();
-    console.log(process.env.DEMO_MODE, process.env.REACT_APP_API_URL, process.env.REACT_APP_API_URL_LOCAL)
-    // const mainImage = process.env.REACT_APP_API_URL + superhero.SuperheroImages[0]?.image  || NoPhoto;
-    const mainImage = process.env.REACT_APP_API_URL_LOCAL
-            ? superhero.SuperheroImages[0]?.image || NoPhoto
-            : process.env.REACT_APP_API_URL + superhero.SuperheroImages[0]?.image;
+    const mainImage = superhero?.SuperheroImages?.length
+            ? (!process.env.REACT_APP_DEMO_MODE
+                    ? `${process.env.REACT_APP_API_URL}${superhero.SuperheroImages[0].image}`
+                    : superhero.SuperheroImages[0].image)
+            : NoPhoto;
     return (
             <div className={styles.wrapper_hero}>
                 <div className={styles.hero}>

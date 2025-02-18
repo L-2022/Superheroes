@@ -12,7 +12,6 @@ const HeroList = observer(() => {
     fetchHeroes(heroes.page, heroes.limit).then((data) => {
       heroes.setListSuperhero(data.superheroes);
       heroes.setTotalCount(data.total);
-      heroes.setModeDemo(data.mode);
     });
   }, [heroes.page, heroes.limit, heroes]);
 

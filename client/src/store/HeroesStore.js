@@ -8,7 +8,6 @@ export default class HeroesStore {
     this._limit = 5;
     this._searchText = "";
     this._dateCreation = "new";
-    this._modeDemo = false;
     makeAutoObservable(this);
   }
 
@@ -27,16 +26,9 @@ export default class HeroesStore {
   setTotalCount(count) {
     this._totalCount = count;
   }
-  setModeDemo(mode) {
-    this._modeDemo = mode;
-  }
 
   setListSuperhero(listSuperhero) {
     this._listSuperhero = listSuperhero;
-  }
-
-  get modeDemo() {
-    return this._modeDemo;
   }
 
   get totalCount() {

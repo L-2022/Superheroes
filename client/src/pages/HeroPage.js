@@ -7,12 +7,17 @@ import UpdateHero from "../components/Hero/UpdateHero";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2"
+import NoPhoto from "../assets/NoPhoto 2.png";
 
 const HeroPage = () => {
   const [heroes, setHeroes] = useState({ SuperheroImages: [], listSuperpowers: []});
   const [changeHero, setChangeHero] = useState(false);
   const { id } = useParams();
   const history = useHistory();
+
+  console.warn(process.env.REACT_APP_API_URL,
+          process.env.REACT_APP_API_URL_DEFAULT_DATA,
+          process.env.REACT_APP_DEMO_MODE)
 
   useEffect(() => {
     fetchOneHero(id).then((data) => {
@@ -77,32 +82,18 @@ const HeroPage = () => {
 
                         <div className={styles.wrapper__info_hero}>
                           {heroes.SuperheroImages.length > 0 ? (
-                                          // <img
-                                          //         className={styles.main_hero_img}
-                                          //         src={process.env.REACT_APP_API_URL + heroes.SuperheroImages[0].image}
-                                          //         alt="Hero"
-                                          // />
-
-                                          // <img
-                                          //         className={styles.main_hero_img}
-                                          //         src={process.env.REACT_APP_API_URL + heroes.SuperheroImages[0].image
-                                          //                 ? process.env.REACT_APP_API_URL + heroes.SuperheroImages[0]?.image
-                                          //                 : `http://localhost:3000${heroes.SuperheroImages[0].image}`
-                                          //         }
-                                          //         alt="Hero"
-                                          // />
                                   <img
                                           className={styles.main_hero_img}
                                           src={
-                                            process.env.REACT_APP_API_URL_LOCAL
-                                                    ?`http://localhost:3000${heroes.SuperheroImages[0].image}`
+                                            process.env.REACT_APP_DEMO_MODE
+                                                    ?`${process.env.REACT_APP_API_URL_DEFAULT_DATA}${heroes.SuperheroImages[0].image}`
                                                     : `${process.env.REACT_APP_API_URL}${heroes.SuperheroImages[0].image}`
-                                          }
+                                          || NoPhoto}
                                           alt="Hero"
                                   />
 
                             ) : (
-                                  <>Without Images</>
+                                  <p>Without Images</p>
                           )}
 
                           <div className={styles.info_hero}>
@@ -117,9 +108,7 @@ const HeroPage = () => {
                           </div>
                         </div>
 
-                        {/* Опис походження */}
                         <div className={styles.info_hero}>
-                          {/* Суперсили */}
                           <h2 className={styles.label}>Superpowers:</h2>
                             {heroes.listSuperpowers.length > 0 ? (
                                     heroes.listSuperpowers.map((listSuperpower) => (
@@ -139,45 +128,23 @@ const HeroPage = () => {
                           </h2>
                           <p>{heroes.superpowers}</p>
                         </div>
-
-
-
-                        {/* Галерея */}
                         <h2 className={styles.label}>Images:</h2>
                         <div className={styles.gallery}>
                           {heroes.SuperheroImages.length > 1 ? (
                                   heroes.SuperheroImages.map((itemImg) => (
                                           <div key={itemImg.id}>
-                                            {/*<img className={styles.img} src={process.env.REACT_APP_API_URL + itemImg.imagealt="Hero" />alt="Hero" />*/}
-                                            {/*<img className={styles.img}*/}
-                                            {/*     src={heroes + itemImg.image ?*/}
-                                            {/*             `http://localhost:3000${itemImg.image}`*/}
-                                            {/*             : ""}*/}
-                                            {/*     alt="Hero" />*/}
-                                            {/*<img className={styles.img} src={*/}
-                                            {/*  process.env.REACT_APP_API_URL + heroes.SuperheroImages[0]?.image*/}
-                                            {/*? `${process.env.REACT_APP_API_URL || "http://localhost:3000"}${itemImg.image}`*/}
-                                            {/*: ""}*/}
-                                            {/*alt="Hero" />*/}
-
                                             <img
-                                                    className={styles.img}
                                                     src={
-                                                      process.env.REACT_APP_API_URL_LOCAL
-                                                              ? `http://localhost:3000${itemImg.image}`
+                                                      process.env.REACT_APP_DEMO_MODE
+                                                              ? `${process.env.REACT_APP_API_URL_DEFAULT_DATA}${itemImg.image}`
                                                               : `${process.env.REACT_APP_API_URL}${itemImg.image}`
                                                     }
                                                     alt="Hero"
                                             />
-
-
-
-
-
                                           </div>
                                   ))
                           ) : (
-                                  <>Without Images</>
+                                  <p>Without Images</p>
                           )}
                         </div>
                       </>

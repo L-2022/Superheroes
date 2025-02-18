@@ -23,28 +23,23 @@ export const getOneHeroDemo = (id) => {
 };
 
 export const createHeroDemo = (hero) => {
+    console.log(hero);
+
     const newHero = {
         ...hero,
         id: defaultHeroes.length ? Math.max(...defaultHeroes.map(h => h.id)) + 1 : 0,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+        listSuperpowers: hero.superpowers
+                ? hero.superpowers.split(', ').map(power => ({ titleSuperpower: power }))
+                : [],
+        SuperheroImages: hero.SuperheroImages
+                ? hero.SuperheroImages.map(img => ({ image: img.image }))
+                : [],
     };
+
     defaultHeroes.push(newHero);
     return newHero;
-};
-
-export const changeHeroDemo = (changedHero, id) => {
-    const index = defaultHeroes.findIndex(hero => String(hero.id) === String(id));
-    if (index === -1) {
-        console.warn(`Demo mode: Hero with id ${id} not found.`);
-        return null;
-    }
-    defaultHeroes[index] = {
-        ...defaultHeroes[index],
-        ...changedHero,
-        updatedAt: new Date().toISOString(),
-    };
-    return defaultHeroes[index];
 };
 
 export const deleteHeroDemo = (id) => {

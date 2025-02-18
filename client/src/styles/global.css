@@ -97,35 +97,35 @@ html {
 
 :root {
   /* === Base Colors === */
-  --color-black: #000000; /* Чорний */
-  --color-black-hafl-transperent: rgba(0, 0, 0, 0.5); /* Чорний */
-  --color-black-light: #333333; /* Світліший чорний */
+  --color-black: #000000;
+  --color-black-hafl-transperent: rgba(0, 0, 0, 0.5);
+  --color-black-light: #333333;
 
-  --color-white: #ffffff; /* Білий */
-  --color-white-dark: #e0e0e0; /* Темніший білий */
+  --color-white: #ffffff;
+  --color-white-dark: #e0e0e0;
 
-  --color-gray-light: #b79494; /* Світло-сірий */
-  --color-gray-lighter: #f0f0f0; /* Ще світліший сірий */
-  --color-gray-darker: #b0b0b0; /* Темніший світло-сірий */
-  --color-gray-dark: #292929; /* Темно-сірий */
-  --color-gray-darkest: #1a1a1a; /* Ще темніший сірий */
+  --color-gray-light: #b79494;
+  --color-gray-lighter: #f0f0f0;
+  --color-gray-darker: #b0b0b0;
+  --color-gray-dark: #292929;
+  --color-gray-darkest: #1a1a1a;
 
-  --color-red: #ff0000; /* Червоний */
-  --color-red-light: #ff6666; /* Світло-червоний */
-  --color-red-dark: #cc0000; /* Темно-червоний */
-  --color-red-darker: #990000; /* Ще темніший червоний */
+  --color-red: #ff0000;
+  --color-red-light: #ff6666;
+  --color-red-dark: #cc0000;
+  --color-red-darker: #990000;
 
-  --color-green: #10a810; /* Зелений */
-  --color-green-light: rgba(77, 213, 77); /* Світло-зелений */
-  --color-green-lighter: #99ff99; /* Ще світліший зелений */
-  --color-green-dark: #00cc00; /* Темно-зелений */
-  --color-green-darker: #009900; /* Ще темніший зелений */
+  --color-green: #10a810;
+  --color-green-light: rgba(77, 213, 77);
+  --color-green-lighter: #99ff99;
+  --color-green-dark: #00cc00;
+  --color-green-darker: #009900;
 
-  --color-blue: #3030fa; /* Синій */
-  --color-blue-light: rgb(114, 123, 255); /* Світло-синій */
-  --color-blue-lighter: #9999ff; /* Ще світліший синій */
-  --color-blue-dark: #0000cc; /* Темно-синій */
-  --color-blue-darker: #000099; /* Ще темніший синій */
+  --color-blue: #3030fa;
+  --color-blue-light: rgb(114, 123, 255);
+  --color-blue-lighter: #9999ff;
+  --color-blue-dark: #0000cc;
+  --color-blue-darker: #000099;
 }
 
 :root {
@@ -201,7 +201,7 @@ html {
 [data-theme="light"] {
   --gradient-superpower-item: linear-gradient(135deg, var(--color-blue-light) 0%, white 100%);
   --bg-primary: var(--color-gray-light);
-  --bg-logo: var(--color-black);
+  --bg-logo: var(--color-blue-light);
 
   --text-primary: var(--color-black);
   --text-primary-inv: var(--color-white);
@@ -256,8 +256,6 @@ p, button {
   word-break: break-word;
 }
 
-
-
 :root {
   --background-light: url("../assets/L.webp");
   --background-dark: url("../assets/D.webp");
@@ -280,13 +278,19 @@ p, button {
 }
 
 .Toastify__toast--success {
-  background-color: var(--color-gray-light) !important;
+  background-color: var(--btn-bg) !important;
   color: white !important;
   font-size: var(--font-size-small);
 }
 
+.Toastify__toast--warning {
+  background-color: var(--btn-bg) !important;
+  color: var(--text-primary) !important;
+  font-size: var(--font-size-base);
+}
+
 .Toastify__toast--error {
-  background-color: var(--color-gray-light) !important;
+  background-color: var(--color-red-light) !important;
   color: white !important;
   font-size: var(--font-size-small);
 }
